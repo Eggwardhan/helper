@@ -1,0 +1,105 @@
+<!--index2.wxml-->
+<text>index2.wxml</text>
+<view class="container">
+<block wx:if="{{searchbar}}">
+<view class="page__bd">
+        <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                    <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                        <icon type="clear" size="14"></icon>
+                    </view>
+                </view>
+                <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                    <icon class="weui-icon-search" type="search" size="14"></icon>
+                    <view class="weui-search-bar__text">搜索</view>
+                </label>
+            </view>
+            <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+        </view>
+        <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+</block>
+
+
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval='{{interval}}' duration="{{duration}}">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src ="{{item.imgUrl}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+ <view class ="page">     
+    <view class="page__hd">
+        <view class="page__title"></view>
+        <view class="page__desc"></view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-grids">
+            <block wx:for="{{grids}}" wx:key="*this">
+                <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="/resources/subnav_05.png" />
+                    <view class="weui-grid__label">二手书籍</view>
+                </navigator>
+            </block>
+            <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="/resources/subnav_05.png" />
+                    <view class="weui-grid__label">分类用</view>
+            </navigator><navigator url="" class="weui-grid" hover-class="weui-grid_active">
+                <image class="weui-grid__icon" src="/resources/subnav_05.png" />
+                <view class="weui-grid__label">分类用</view>
+            </navigator>
+        </view>
+    </view>
+
+       <view class = "main-container">
+        <block wx:if="{{goodsList == null}}">
+            <view class="weui-loadmore__tips">正在加载</view>
+        </block>
+
+        <block wx:if="{{goodsList != null}}">
+            <view class = "main-container" wx:for="{{goodsList}}" wx:for-item="item" data-value = "{{item}}">
+                <view class = "list-sec">
+                    <view class = "top-sec">
+                        <image class="sec-img" src="{{item.goodsImg}}" background-size="cover"></image>
+                    </view>
+                    <view class = "bottom-sec">
+                        <view class = "pirce-wrapper">
+                            <view class="inline-block now">￥{{item.Price}}</view>
+                        </view>
+                        <view class = "top-title">
+                            <view class = "text-overflow title inline-block">{{item.goodsName}}</view>
+                            <view class = "text-overflow description inline-block">{{item.tagline}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+
+
+</view>
+    </view>

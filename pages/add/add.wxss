@@ -1,0 +1,56 @@
+/* pages/add/add.wxss */
+.container{
+	background-color: #f3f3f3;
+}
+.imgWrap {
+	background-color: #f3f3f3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.subImgWrap {
+	background-color: #f3f3f3;
+  height:25vw;
+  width: 25vw;
+	display: flex;
+  justify-content: space-around;
+	align-items: center;
+}
+.flex-wrp {display: flex;}
+.camera {
+	width: 150rpx;
+}
+.image {
+	width: 100%;
+}
+.content {
+	margin-top: 35rpx;
+}
+.uploadBtn {
+	width: 94%;
+  margin:20rpx;
+	border-radius: 5rpx;
+	color: white;
+}
+.add {
+  background-color: royalblue;
+  font-size: 20px;
+  font-weight: 900;
+}
+.remove{
+  background-color: orange;
+  font-size: 20px;
+  font-weight: 900;
+}
+.camera{
+  margin-top:15px;
+}
+.cameratext{
+  font-size: 16px;
+  opacity:0.8;
+  margin:15px;
+}
+.weui-select {
+	padding-left: 15px;
+	border-right: 0;
+}

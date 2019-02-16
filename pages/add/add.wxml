@@ -1,0 +1,57 @@
+<!--pages/photoCompetition/uploadPhoto/uploadPhoto.wxml-->
+<view class="container">
+  <view class="imgWrap" bindtap="chsImg" wx:if="{{!file.length}}">
+		<image class="camera" mode="widthFix" src="/resources/camera_icon.png"/>
+	</view>
+	<view class="imgWrap" wx:for="{{file}}" wx:key="{{index}}" wx:for-item="items" >
+		<image class="image" mode="aspectFill" src="{{items.path}}" />
+	</view>
+    <button wx:if='{{file.length}}' bindtap='delateImg' class="uploadBtn remove {{(0!=file.length&&file.length<=6) ? 'active' : 'negative'}}" disabled="{{(0!=file.length&&file.length<=6) ? false : true}}" >
+			-
+		</button>
+    <button  bindtap='chsImg' class="uploadBtn add {{(file.length<6) ? 'active' : 'negative'}}" disabled="{{(file.length<6) ? false : true}}">
+			+
+		</button>
+	<progress wx:if="{{uploading}}" percent="{{uploadPercent}}" active-color="{{progressColor}}" stroke-width="6" active="{{uploading}}" active-mode="forwards"/>
+	<view class="content">
+  <view wx:if='{{file.length>0}}' class='cameratext'>请上传2-6张图片,点击 - 可撤销</view>
+	<view wx:if='{{file.length==0}}' class='cameratext'>请点击图标上传n张图片,第一张图片将作为封面(不大于6张)</view>
+    <view class="weui-cells__title">需求（可选卖或买）</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell weui-cell_select">
+				<view class="weui-cell__bd">
+					<picker range="{{groupRange}}" value="{{group}}" bindchange="pickGroup">
+						<view class="weui-select weui-select_in-select-after">{{groupRange[group]}}</view>
+					</picker>
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">商品名</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell weui-cell_input">
+		        <view class="weui-cell__bd">
+		            <input class="weui-input" type="text" id="title" placeholder="请填写商品名称" bindinput="bindinput" value="{{title}}" maxlength="15" />
+		        </view>
+		    </view>
+		</view>
+		<view class="weui-cells__title">描述</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<textarea class="weui-textarea" placeholder="详细描述" id="intro" style="height: 3.3em" bindinput="bindinput" value="{{content}}" maxlength="150"></textarea>
+					<view class="weui-textarea-counter">{{length}}/150</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<form report-submit="true" bindsubmit="upload">
+		<button wx:if='{{group==1}}' formType="submit" class="uploadBtn {{allowUpload&&(2<=file.length&&file.length<=6)?'active':'negative'}}" disabled="{{(allowUpload&&(2<=file.length&&file.length<=6)) ? false : true}}">
+			上传
+		</button>
+    <button wx:if='{{group==0}}' formType="submit" class="uploadBtn {{(allowUpload&&file.length==1) ? 'active' : 'negative'}}" disabled="{{(allowUpload&&file.length==1) ? false : true}}">
+			上传
+		</button>
+  </form>
+
+</view>
