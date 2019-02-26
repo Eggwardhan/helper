@@ -14,7 +14,7 @@
 		</button>
 	<progress wx:if="{{uploading}}" percent="{{uploadPercent}}" active-color="{{progressColor}}" stroke-width="6" active="{{uploading}}" active-mode="forwards"/>
 	<view class="content">
-  <view wx:if='{{file.length>0}}' class='cameratext'>请上传2-6张图片,点击 - 可撤销</view>
+  <view wx:if='{{file.length>0}}' class='cameratext'>请上传1-6张图片,点击 - 可撤销</view>
 	<view wx:if='{{file.length==0}}' class='cameratext'>请点击图标上传n张图片,第一张图片将作为封面(不大于6张)</view>
     <view class="weui-cells__title">需求（可选卖或买）</view>
 		<view class="weui-cells weui-cells_after-title">
@@ -46,10 +46,7 @@
 		</view>
 	</view>
 	<form report-submit="true" bindsubmit="upload">
-		<button wx:if='{{group==1}}' formType="submit" class="uploadBtn {{allowUpload&&(2<=file.length&&file.length<=6)?'active':'negative'}}" disabled="{{(allowUpload&&(2<=file.length&&file.length<=6)) ? false : true}}">
-			上传
-		</button>
-    <button wx:if='{{group==0}}' formType="submit" class="uploadBtn {{(allowUpload&&file.length==1) ? 'active' : 'negative'}}" disabled="{{(allowUpload&&file.length==1) ? false : true}}">
+		<button  formType="submit" class="uploadBtn {{allowUpload&&file.length<=6?'active':'negative'}}" disabled="{{(allowUpload&&file.length<=6) ? false : true}}">
 			上传
 		</button>
   </form>

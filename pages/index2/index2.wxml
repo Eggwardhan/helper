@@ -1,5 +1,6 @@
 <!--index2.wxml-->
 <text>index2.wxml</text>
+<view wx:if ="{{hasAuth}}">
 <view class="container">
 <block wx:if="{{searchbar}}">
 <view class="page__bd">
@@ -103,3 +104,9 @@
 
 </view>
     </view>
+  </view>
+  <view wx:else>
+<button open-type='getUserInfo' lang='zh_CN'  bindgetuserinfo="onGotUserInfo">授权登录 /
+Authorized to log in</button>
+
+  </view>

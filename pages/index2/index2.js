@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    hasAuth:wx.canIUse('button.open-type.getUserInfo'),
     grids: [0, 1, 2, 3, 4, 5,],
     indicatorDots : true,
      autoplay:"" ,
@@ -43,11 +44,30 @@ Page({
       inputVal: e.detail.value
     });
   },/////search 
+
+  onGotUserInfo(e){
+    console.log(e.detail.errMsg)
+    console.log(e.detail.userInfo)
+   this.setData({
+     hasAuth:true
+   })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.getSetting({
+      success:function(res){
+        if(res.authSetting['scope.userInfo']){
+          wx.getUserInfo({
+            success:function(res){
+              console.log(res.userInfo)
+            }
+          })
+          }
+         }
+        })
+ 
   },
 
   /**
