@@ -1,7 +1,4 @@
-.personal {
-  position: relative;
-  height: 100%;
-}
+@import "../../weui.wxss";
 
 .userinfo {
   position: absolute;
@@ -10,40 +7,16 @@
   transform: translate(-50%, -50%);
   text-align: center;
 }
-
 .userinfo-avatar {
   display: block;
+  margin:40rpx auto;
   width: 180rpx;
   height: 180rpx;
   border-radius: 50%;
 }
 
-.userinfo-nickname {
-  display: block;
-  font-size: 28rpx;
-}
 
-.info_list {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  border: 1px solid #e7e7e7;
-}
-.navigator{
-  border-bottom: 1px solid #f2f2f2;
-}
-.weui_cell {
-  position: relative;
-  height: 100rpx;
-  padding: 0 40rpx;
-  line-height: 100rpx;
-}
-.weui_cell_bd_p{
-  font-size: 30rpx;
-}
+
 .navigator:last-child {
   border-bottom: none;
 }
@@ -55,17 +28,8 @@
   height: 40rpx;
   width: 40rpx;
 }
-.arrow{
-  width:40rpx;
-  height:40rpx;
-  display:block;
 
-}
-.with_arrow{
-  height: 100rpx;
-  padding: 0 40rpx;
-  line-height: 100rpx;
-}
+
 
 .logout {
   position: absolute;
