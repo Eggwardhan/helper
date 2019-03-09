@@ -1,0 +1,81 @@
+<!--index2.wxml-->
+  <view wx:if="{{hasAuth}}&&{{hasRegister}}">
+<text>mother fu</text>
+
+  </view>
+
+<view wx:else >
+
+  <view class="page">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input {{nameWarn?'weui-cell_warn':''}}">
+            <view class="weui-cell__hd">
+              <view class="weui-label">姓名</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" type="text" id="name" placeholder="请输入姓名" bindinput="bindinput" value="{{name}}" />
+            </view>
+            <view wx:if="{{nameWarn}}" class="weui-cell__ft">
+          <icon color="#E64340" size="23" type="warn"></icon>
+        </view>
+        </view>
+        <view class="weui-cell weui-cell_input {{schoolIdWarn?'weui-cell_warn':''}}">
+            <view class="weui-cell__hd">
+              <view class="weui-label">学号/工号</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" type="text" id="schoolId" placeholder="请输入学号/工号" bindinput="bindinput" value="{{schoolId}}" />
+            </view>
+            <view wx:if="{{schoolIdWarn}}" class="weui-cell__ft">
+          <icon color="#E64340" size="23" type="warn"></icon>
+        </view>
+        </view>
+    </view>
+
+
+    <view class="weui-cells weui-cells_after-title ">
+      <view class="weui-cell weui-cell_input ">
+            <view class="weui-cell__hd">
+              <view class="weui-label">手机</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" type="text" id="phone"  placeholder="请输入手机号码" bindinput="bindinput" value="{{phone}}"/>
+            </view>
+            <view class="weui-cell__ft">
+          <button open-type="getPhoneNumber" bindgetphonenumber="getWeixinPhone"><view class="weui-vcode-btn" >直接绑定</view></button>
+        </view>
+        </view>
+          <view wx:if="{{phoneWarn}}" class="weui-cell__ft">
+          <icon color="#E64340" size="23" type="warn"></icon>
+        </view>
+    </view>
+          <view class="weui-cells__title">选择</view>
+          <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select ">
+            <view class="weui-cell__hd weui-cell__hd_in-select-after">
+              <view class="weui-label">学院</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker id="schoolDepartment"   bindchange="bindinput" value="{{departmentIndex}}" range='{{schoolDepartmentList}}' >
+                <view class='weui-select weui-select_in-select-after'>{{schoolDepartmentList[departmentIndex]}}</view>
+                </picker>
+            </view>
+        </view>
+        </view>
+        <view class="weui-cell weui-cell_select ">
+            <view class="weui-cell__hd weui-cell__hd_in-select-after">
+              <view class="weui-label">性别</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker id="gender"   bindchange="bindinput" value="{{genderIndex}}" range='{{genderList}}' >
+                <view class='weui-select weui-select_in-select-after'>{{genderList[genderIndex]}}</view>
+                </picker>
+            </view>
+        </view>
+        <button class="weui-btn"  type="primary" open-type='getUserInfo' lang='zh_CN'  bindgetuserinfo="onGotUserInfo">→授权登录 ←</button>
+
+
+      <button class='saveInfo {{allowSave?"active":"negative"}}' disabled="{{allowSave?false:true}}" bindtap="saveInfo">认证身份</button>
+  </view>
+</view>
+

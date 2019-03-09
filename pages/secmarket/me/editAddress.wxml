@@ -18,7 +18,7 @@
             </view>
             <view class="input-wrapper">
                 <view class="input-title">详细地址</view>
-                <input bindinput = "setDetail" class = "input-long" name="input"  value = "{{address.address}}"  placeholder="街道、门牌等详细地址信息" placeholder-style = "width: 100%;color: #888888; " />
+                <input bindinput = "setDetail" class = "input-long" name="input"  value = "{{address.address}}"  placeholder="校区，宿舍等详细地址信息" placeholder-style = "width: 100%;color: #888888; " />
             </view>
         </view>
         <view class="bottom-sec">

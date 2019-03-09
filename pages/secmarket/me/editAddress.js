@@ -1,5 +1,6 @@
 var app = getApp();
-var util = require('../../utils/util.js');
+var util = require('../../../utils/util.js');
+
 var address_info = {
   "code": "200",
   "count": 0,
@@ -8,6 +9,12 @@ var address_info = {
       "childrenList": [
         {
           "childrenList": [
+            {
+              "childrenList": null,
+              "code": "10512",
+              "name": "昌平区",
+              "pCode": "10052"
+            },
             {
               "childrenList": null,
               "code": "10500",
@@ -80,12 +87,7 @@ var address_info = {
               "name": "顺义区",
               "pCode": "10052"
             },
-            {
-              "childrenList": null,
-              "code": "10512",
-              "name": "昌平区",
-              "pCode": "10052"
-            },
+           
             {
               "childrenList": null,
               "code": "10513",
@@ -20831,7 +20833,7 @@ Page({
     address: {},
     isShow: 0
   },
-  address: {},
+
   origin: {},
   maybeInfo: {},
   addrInfo: {},
