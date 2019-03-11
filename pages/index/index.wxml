@@ -1,8 +1,30 @@
 <!--index2.wxml-->
   <view wx:if="{{hasAuth}}&&{{hasRegister}}">
-<text>mother fu</text>
 
+    <view class='page'>
+      <view class='page__hd'>
+          <view class="page__title">自习预约时间</view>
+          <view class="page__desc">选择你与神秘人预约自习的时间。</view>
+      </view>
+      <view class="page__bd">
+            <view class="weui-btn-area">
+                <view>自习预订日期</view>
+                <picker class="weui-btn" mode="date" value="{{date}}" id='date'  start="2018-09-26" end="2022-10-10" bindchange="bindinput">
+                    <button type='default'>{{date}}</button>
+                </picker>
+                <view>开始时间</view>
+                <picker class="weui-btn" mode="time" value="{{startTime}}" id='startTime' start="08:00" end="22:00" bindchange="bindinput">
+                    <button type='default'>{{startTime}}</button>
+                </picker>
+                <view>结束时间</view>
+                <picker class="weui-btn" mode="time" value="{{endTime}}" id='endTime' start="{{startTime}}+3600" end="22:00" bindchange="bindinput">
+                  <button type='default'>{{endTime}}</button>
+                </picker>
+            </view>
+        <button class="weui-btn" type="primary" disabled="{{postActive}}">提交</button>
+    </view>
   </view>
+</view>
 
 <view wx:else >
 

@@ -1,0 +1,36 @@
+<view class="page">
+
+<view class="page_hd" bindtap="junpLogin">
+<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+</view>
+
+    <view class="page__hd">
+        <view class="page__title">\t</view>
+        <view class="page__desc">\t</view>
+    </view>
+    <view class="page__bd">
+   
+
+        <view class="weui-panel">
+            <view class="weui-panel__hd">{{userInfo.nickName}}</view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_small-appmsg">
+                    <view class="weui-cells weui-cells_in-small-appmsg">
+                      <block wx:for='{{userListInfo}}'>
+                          <navigator url="{{item.url}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                              <view class="weui-cell__hd"><image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" /></view>
+                              <view class="weui-cell__bd weui-cell_primary">
+                                  <view>{{item.text}}</view>
+                              </view>
+                              <view class="right-arrow"> 
+                                <image src="../../resources/arrowright.png "class="arrow" width="355" ></image>
+                              </view> 
+                              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                          </navigator>
+                      </block>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

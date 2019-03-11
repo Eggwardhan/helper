@@ -1,17 +1,24 @@
 // pages/index/index.js
-var app=getApp();
+var util=require('../../utils/util.js')
+const app = getApp()
+
 Page({
   data: {
     hasAuth :false,
     hasRegister:false,
+    postActive:false,
     schoolDepartmentList:['信通','计院','邮政','软工','国院','电子','理学院','经管','人文','网安'],
     departmentIndex: 0,
     gender:'男',
     schoolDepartment:'信通',
     genderList:['男','女'],
-    genderIndex:0
+    genderIndex:0,
+    date:null,
+    startTime:util.formatTime(new Date()),
+    endTime:null
   },
   bindinput(e){
+
     let reg;
     let that=this;
     switch(e.target.id){
@@ -73,6 +80,22 @@ Page({
           genderIndex: e.detail.value
         });
         break;
+      case "date":
+        this.setData({
+          date:e.detail.value
+        });
+        break;
+      case "startTime":
+      this.setData({
+        startTime:e.detail.value
+      });
+      break;
+      case "endTime":
+      this.setData({
+        endTime:e.detail.value
+      });
+      break;
+
 
         }    
      this.getSaveBtn() ;
@@ -134,6 +157,11 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+
+
+      var time=util.formatTime(new Date());
+      console.log(time)
+
       wx.getSetting({
         success: res => {
           if (res.authSetting['scope.userInfo']) {
@@ -144,9 +172,6 @@ Page({
             wx.getUserInfo({
               success: res => {
                 // 可以将 res 发送给后台解码出 unionId
-                this.globalData.userInfo = res.userInfo
-                console.log(res.userInfo);
-
                 // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
                 // 所以此处加入 callback 以防止这种情况
                 if (this.userInfoReadyCallback) {
