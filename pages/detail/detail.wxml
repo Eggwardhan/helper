@@ -1,0 +1,47 @@
+<!--pages/detail/detail.wxml-->
+<view class="container">
+  <view class="question" bindtap="toQuestion">
+    <text class="question-title">{{task.task_place}}</text>
+  </view>
+  <view class="task-wrp">
+    <view class="bg-half"></view>
+    <view class="task flex-wrp">
+      <view class="avatar flex-item">
+        <image src="../../resources/active.png"></image>
+      </view>
+      <view class="task-info flex-item">
+        <text class="task-name">{{task.user_name}}</text>
+        <text class="task-des">{{task.user_intro}}</text>
+      </view>
+      <view class="follow flex-item">
+        <text>十 无法关注</text>
+      </view>
+    </view>
+  </view>
+  <view class="task-content">
+    <text>{{task.description}}</text>
+  </view>
+
+  <view class="task-footer flex-wrp">
+    <view class="good flex-item">
+      <view class="order">
+        <image src="../../resources/flag.png"></image>
+      </view>
+      <view class="order-num">预约</view>
+    </view>
+    <view class="operation-wrp flex-item">
+      <view class="operation flex-wrp flex-tab">
+
+        <view class="operation-btn flex-item">
+          <image src="../../resources/comment.png"></image>
+          <text>留言</text>
+        </view>
+  
+
+      </view>
+    </view>
+
+
+
+  </view>
+</view>

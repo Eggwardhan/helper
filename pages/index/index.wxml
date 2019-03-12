@@ -1,103 +1,104 @@
 <!--index2.wxml-->
-  <view wx:if="{{hasAuth}}&&{{hasRegister}}">
+<view wx:if="{{hasAuth}}&&{{hasRegister}}">
 
-    <view class='page'>
-      <view class='page__hd'>
-          <view class="page__title">自习预约时间</view>
-          <view class="page__desc">选择你与神秘人预约自习的时间。</view>
+  <view class='page'>
+    <view class='page__hd'>
+      <view class="page__title">自习预约时间</view>
+      <view class="page__desc">选择你与神秘人预约自习的时间。</view>
+    </view>
+    <view class="page__bd">
+      <view class="weui-btn-area">
+        <view>自习预订日期</view>
+        <picker class="weui-btn" mode="date" value="{{date}}" id='date' start="2018-09-26" end="2022-10-10" bindchange="bindinput">
+          <button type='default'>{{date}}</button>
+        </picker>
+        <view>开始时间</view>
+        <picker class="weui-btn" mode="time" value="{{startTime}}" id='startTime' start="08:00" end="22:00" bindchange="bindinput">
+          <button type='default'>{{startTime}}</button>
+        </picker>
+        <view>结束时间</view>
+        <picker class="weui-btn" mode="time" value="{{endTime}}" id='endTime' start="{{startTime}}+3600" end="22:00" bindchange="bindinput">
+          <button type='default'>{{endTime}}</button>
+        </picker>
       </view>
-      <view class="page__bd">
-            <view class="weui-btn-area">
-                <view>自习预订日期</view>
-                <picker class="weui-btn" mode="date" value="{{date}}" id='date'  start="2018-09-26" end="2022-10-10" bindchange="bindinput">
-                    <button type='default'>{{date}}</button>
-                </picker>
-                <view>开始时间</view>
-                <picker class="weui-btn" mode="time" value="{{startTime}}" id='startTime' start="08:00" end="22:00" bindchange="bindinput">
-                    <button type='default'>{{startTime}}</button>
-                </picker>
-                <view>结束时间</view>
-                <picker class="weui-btn" mode="time" value="{{endTime}}" id='endTime' start="{{startTime}}+3600" end="22:00" bindchange="bindinput">
-                  <button type='default'>{{endTime}}</button>
-                </picker>
-            </view>
-        <button class="weui-btn" type="primary" disabled="{{postActive}}">提交</button>
+      <button class="weui-btn" type="primary" disabled="{{postActive}}">提交</button>
     </view>
   </view>
 </view>
 
-<view wx:else >
+<view wx:else>
 
   <view class="page">
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input {{nameWarn?'weui-cell_warn':''}}">
-            <view class="weui-cell__hd">
-              <view class="weui-label">姓名</view>
-            </view>
-            <view class="weui-cell__bd">
-                <input class="weui-input" type="text" id="name" placeholder="请输入姓名" bindinput="bindinput" value="{{name}}" />
-            </view>
-            <view wx:if="{{nameWarn}}" class="weui-cell__ft">
+        <view class="weui-cell__hd">
+          <view class="weui-label">姓名</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="text" id="name" placeholder="请输入姓名" bindinput="bindinput" value="{{name}}" />
+        </view>
+        <view wx:if="{{nameWarn}}" class="weui-cell__ft">
           <icon color="#E64340" size="23" type="warn"></icon>
         </view>
+      </view>
+      <view class="weui-cell weui-cell_input {{schoolIdWarn?'weui-cell_warn':''}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">学号/工号</view>
         </view>
-        <view class="weui-cell weui-cell_input {{schoolIdWarn?'weui-cell_warn':''}}">
-            <view class="weui-cell__hd">
-              <view class="weui-label">学号/工号</view>
-            </view>
-            <view class="weui-cell__bd">
-                <input class="weui-input" type="text" id="schoolId" placeholder="请输入学号/工号" bindinput="bindinput" value="{{schoolId}}" />
-            </view>
-            <view wx:if="{{schoolIdWarn}}" class="weui-cell__ft">
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="text" id="schoolId" placeholder="请输入学号/工号" bindinput="bindinput" value="{{schoolId}}" />
+        </view>
+        <view wx:if="{{schoolIdWarn}}" class="weui-cell__ft">
           <icon color="#E64340" size="23" type="warn"></icon>
         </view>
-        </view>
+      </view>
     </view>
 
 
     <view class="weui-cells weui-cells_after-title ">
       <view class="weui-cell weui-cell_input ">
-            <view class="weui-cell__hd">
-              <view class="weui-label">手机</view>
-            </view>
-            <view class="weui-cell__bd">
-                <input class="weui-input" type="text" id="phone"  placeholder="请输入手机号码" bindinput="bindinput" value="{{phone}}"/>
-            </view>
-            <view class="weui-cell__ft">
-          <button open-type="getPhoneNumber" bindgetphonenumber="getWeixinPhone"><view class="weui-vcode-btn" >直接绑定</view></button>
+        <view class="weui-cell__hd">
+          <view class="weui-label">手机</view>
         </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="text" id="phone" placeholder="请输入手机号码" bindinput="bindinput" value="{{phone}}" />
         </view>
-          <view wx:if="{{phoneWarn}}" class="weui-cell__ft">
-          <icon color="#E64340" size="23" type="warn"></icon>
+        <view class="weui-cell__ft">
+          <button open-type="getPhoneNumber" bindgetphonenumber="getWeixinPhone">
+            <view class="weui-vcode-btn">直接绑定</view>
+          </button>
         </view>
+      </view>
+      <view wx:if="{{phoneWarn}}" class="weui-cell__ft">
+        <icon color="#E64340" size="23" type="warn"></icon>
+      </view>
     </view>
-          <view class="weui-cells__title">选择</view>
-          <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_select ">
-            <view class="weui-cell__hd weui-cell__hd_in-select-after">
-              <view class="weui-label">学院</view>
-            </view>
-            <view class="weui-cell__bd">
-                <picker id="schoolDepartment"   bindchange="bindinput" value="{{departmentIndex}}" range='{{schoolDepartmentList}}' >
-                <view class='weui-select weui-select_in-select-after'>{{schoolDepartmentList[departmentIndex]}}</view>
-                </picker>
-            </view>
+    <view class="weui-cells__title">选择</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select ">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">学院</view>
         </view>
+        <view class="weui-cell__bd">
+          <picker id="schoolDepartment" bindchange="bindinput" value="{{departmentIndex}}" range='{{schoolDepartmentList}}'>
+            <view class='weui-select weui-select_in-select-after'>{{schoolDepartmentList[departmentIndex]}}</view>
+          </picker>
         </view>
-        <view class="weui-cell weui-cell_select ">
-            <view class="weui-cell__hd weui-cell__hd_in-select-after">
-              <view class="weui-label">性别</view>
-            </view>
-            <view class="weui-cell__bd">
-                <picker id="gender"   bindchange="bindinput" value="{{genderIndex}}" range='{{genderList}}' >
-                <view class='weui-select weui-select_in-select-after'>{{genderList[genderIndex]}}</view>
-                </picker>
-            </view>
-        </view>
-        <button class="weui-btn"  type="primary" open-type='getUserInfo' lang='zh_CN'  bindgetuserinfo="onGotUserInfo">→授权登录 ←</button>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_select ">
+      <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">性别</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker id="gender" bindchange="bindinput" value="{{genderIndex}}" range='{{genderList}}'>
+          <view class='weui-select weui-select_in-select-after'>{{genderList[genderIndex]}}</view>
+        </picker>
+      </view>
+    </view>
+    <button class="weui-btn" type="primary" open-type='getUserInfo' lang='zh_CN' bindgetuserinfo="onGotUserInfo">→授权登录 ←</button>
 
 
-      <button class='saveInfo {{allowSave?"active":"negative"}}' disabled="{{allowSave?false:true}}" bindtap="saveInfo">认证身份</button>
+    <button class='saveInfo {{allowSave?"active":"negative"}}' disabled="{{allowSave?false:true}}" bindtap="saveInfo">认证身份</button>
   </view>
 </view>
-

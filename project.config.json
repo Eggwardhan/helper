@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.1",
+	"libVersion": "2.6.2",
 	"appid": "wxcf21c0d239a87934",
 	"projectname": "secmarket",
 	"debugOptions": {
@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -102,6 +102,13 @@
 					"id": -1,
 					"name": "discover",
 					"pathName": "pages/discover/discover",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "edit",
+					"pathName": "pages/edit/edit",
 					"query": "",
 					"scene": null
 				}
