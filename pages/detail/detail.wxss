@@ -7,11 +7,11 @@
     color: #000;
 }
 
-.question {
+.information {
     position: relative;
     width: 650rpx;
     padding: 40rpx 50rpx 30rpx;
-    background: #298DE5;
+    background: #FFB6C1;
     color: #fff;
     font-size: 38rpx;
     line-height: 48rpx;
@@ -27,7 +27,7 @@
     top: 0;
     width: 750rpx;
     height: 75rpx;
-    background: #298DE5;
+    background: #FFB6C1;
 }
 .task {
     position: relative;
@@ -77,8 +77,8 @@
 .task .follow text{
     display: inline-block;
     padding: 15rpx 20rpx;
-    color: #40bcd0;
-    border: solid 2px #40bcd0;
+    color: #f552e7;
+    border: solid 2px #f38df7;
     border-radius: 6rpx;
 }
 .task-content{
@@ -124,7 +124,7 @@
 .task-footer .good .order-num{
     display: inline-block;
     padding: 10rpx 4rpx;
-    /*font-size: 24rpx;*/
+    font-size: 20rpx;
 }
 .task-footer .operation-wrp{
     flex: 5;

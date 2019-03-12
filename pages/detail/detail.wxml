@@ -1,7 +1,7 @@
 <!--pages/detail/detail.wxml-->
 <view class="container">
-  <view class="question" bindtap="toQuestion">
-    <text class="question-title">{{task.task_place}}</text>
+  <view class="information" bindtap="toInformation">
+    <text class="information-title"> {{task.date }}/{{task.startTime}}-{{task.endTime}}\n{{task.task_place}}</text>
   </view>
   <view class="task-wrp">
     <view class="bg-half"></view>
@@ -14,7 +14,7 @@
         <text class="task-des">{{task.user_intro}}</text>
       </view>
       <view class="follow flex-item">
-        <text>十 无法关注</text>
+        <text>无法关注</text>
       </view>
     </view>
   </view>

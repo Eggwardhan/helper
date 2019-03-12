@@ -49,7 +49,7 @@
   <block wx:for="{{task}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
     <view class="task-item">
       <view class="task-source">
-        <a class="">
+        <a class="" >
           <view class="avatar">
             <image src="{{item.avatar_img}}"></image>
           </view>
@@ -58,8 +58,8 @@
         <image class='item-more' mode='aspectFit' src='/resources/more.png'></image>
       </view>
       <view class="task-content">
-        <view class="question" qid="{{question_id}}" bindtap="bindQueTap">
-          <a class="question-link">
+        <view class="task" qid="{{task_id}}" bindtap="bindQueTap">
+          <a class="task-link">
             <text>{{item.task_place}}</text>
           </a>
         </view>

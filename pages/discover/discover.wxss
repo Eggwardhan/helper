@@ -144,7 +144,7 @@
 .container .task-item .task-content{
   padding: 10rpx 0 0 0;
 }
-.container .task-item .task-content .question text{
+.container .task-item .task-content .task text{
   font-size: 28rpx;
   font-weight: 600px;
   line-height: 40rpx;
