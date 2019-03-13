@@ -114,7 +114,7 @@
 }
 .container .task-item .task-source a{
   display: inline-block;
-  height: 40rpx;
+  height: 50rpx;
 }
 .container .task-item .task-source .avatar image{
   /*position: absolute;*/

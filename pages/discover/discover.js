@@ -6,9 +6,10 @@ Page({
     schoolDepartmentList: ['信通', '计院', '邮政', '软工', '国院', '电子', '理学院', '经管', '人文', '网安'],
     departmentIndex: 0,
     task: [{
+              task_id:'123465',
               avatar_img:'../../resources/active.png',
               user_name:'eggwardhan',
-              task_place: '小树林有无????',        
+              task_place: '小树林有无',        
               description:'寻一个安静的老板',
               date:'2019-9-9',
               startTime:'10:50',
@@ -16,6 +17,7 @@ Page({
               
 
     },{
+        task_id:'123sss',
         avatar_img: '../../resources/active.png',
         user_name: '我是谁我在那',
         task_place:'图书馆3lS46',        
@@ -26,7 +28,12 @@ Page({
 
     }]
   },
+goDetail(e){
+wx.navigateTo({
+  url: '/pages/detail/detail?taskId='+e.detail.taskId,
+})
 
+},
 
   onLoad: function (options) {
 

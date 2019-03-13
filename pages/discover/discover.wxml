@@ -47,7 +47,7 @@
 
 <view class='container'>
   <block wx:for="{{task}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
-    <view class="task-item">
+    <view class="task-item"   bindtap='goDetail' id="{{task.task_id}}">
       <view class="task-source">
         <a class="" >
           <view class="avatar">
@@ -58,14 +58,14 @@
         <image class='item-more' mode='aspectFit' src='/resources/more.png'></image>
       </view>
       <view class="task-content">
-        <view class="task" qid="{{task_id}}" bindtap="bindQueTap">
+        <view class="task" id="{{user_id}}" bindtap="bindUserTap">
           <a class="task-link">
             <text>{{item.task_place}}</text>
           </a>
         </view>
         <view class="task-body">
           <view bindtap="bindItemTap">
-            <text class="task-txt" aid="{{task_id}}">{{item.description}}</text>
+            <text class="task-txt" aid="{{task.task_id}}">{{item.description}}</text>
           </view>
           <view class="date" bindtap="bindItemTap">
             <view class="">

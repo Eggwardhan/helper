@@ -5,9 +5,9 @@ const app = getApp()
 Page({
   data: {
     hasAuth :false,
-    hasRegister:false,
+    hasRegister:false, 
     postActive:false,
-    schoolDepartmentList:['信通','计院','邮政','软工','国院','电子','理学院','经管','人文','网安'],
+    schoolDepartmentList:['信息与通信工程学院','计算机学院','自动化学院','软件学院','数字媒体与设计艺术学院','现代邮政学院','继续教育学院','国际学院','网络教育学院','电子工程学院','理学院','经济管理学院','公共管理学院','人文学院','马克思主义学院','网络空间安全学院','光电信息学院','民族教育学院','网络技术研究院','叶培大创新学院'],
     departmentIndex: 0,
     gender:'男',
     schoolDepartment:'信通',
@@ -158,10 +158,19 @@ Page({
      */
     onLoad: function (options) {
 
-
+      
       var time=util.formatTime(new Date());
+      var timee=util.formatTimeX(new Date());
       console.log(time)
-
+      let reg = /\s/
+      let time1=time.split(reg)
+      let timee1=timee.split(reg)
+      this.setData({
+        startTime:time1[1],
+        date:time1[0],
+        endTime:timee1[1]
+      })
+  
       wx.getSetting({
         success: res => {
           if (res.authSetting['scope.userInfo']) {

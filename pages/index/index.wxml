@@ -6,18 +6,18 @@
       <view class="page__title">自习预约时间</view>
       <view class="page__desc">选择你与神秘人预约自习的时间。</view>
     </view>
-    <view class="page__bd">
+    <view class="page__bd page__bd_spacing">
       <view class="weui-btn-area">
         <view>自习预订日期</view>
-        <picker class="weui-btn" mode="date" value="{{date}}" id='date' start="2018-09-26" end="2022-10-10" bindchange="bindinput">
+        <picker class="weui-btn" mode="date" value="{{date}}" id='date' start="2019-03-13" end="2022-10-10" bindchange="bindinput">
           <button type='default'>{{date}}</button>
         </picker>
         <view>开始时间</view>
-        <picker class="weui-btn" mode="time" value="{{startTime}}" id='startTime' start="08:00" end="22:00" bindchange="bindinput">
+        <picker class="weui-btn" mode="time" value="{{startTime}}" id='startTime' start="08:00" end="23:00" bindchange="bindinput">
           <button type='default'>{{startTime}}</button>
         </picker>
         <view>结束时间</view>
-        <picker class="weui-btn" mode="time" value="{{endTime}}" id='endTime' start="{{startTime}}+3600" end="22:00" bindchange="bindinput">
+        <picker class="weui-btn" mode="time" value="{{endTime}}" id='endTime' start="{{startTime}}" end="23:00" bindchange="bindinput">
           <button type='default'>{{endTime}}</button>
         </picker>
       </view>
@@ -86,14 +86,16 @@
         </view>
       </view>
     </view>
-    <view class="weui-cell weui-cell_select ">
-      <view class="weui-cell__hd weui-cell__hd_in-select-after">
-        <view class="weui-label">性别</view>
-      </view>
-      <view class="weui-cell__bd">
-        <picker id="gender" bindchange="bindinput" value="{{genderIndex}}" range='{{genderList}}'>
-          <view class='weui-select weui-select_in-select-after'>{{genderList[genderIndex]}}</view>
-        </picker>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select ">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">性别</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker id="gender" bindchange="bindinput" value="{{genderIndex}}" range='{{genderList}}'>
+            <view class='weui-select weui-select_in-select-after'>{{genderList[genderIndex]}}</view>
+          </picker>
+        </view>
       </view>
     </view>
     <button class="weui-btn" type="primary" open-type='getUserInfo' lang='zh_CN' bindgetuserinfo="onGotUserInfo">→授权登录 ←</button>

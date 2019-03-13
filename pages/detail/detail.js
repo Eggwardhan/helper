@@ -5,18 +5,14 @@ Page({
       avatar_img: '../../resources/active.png',
       user_name: 'eggwardhan',
       user_intro:'一个不会pop的dj不是好程序员',
-      task_place: '小树林有无????上上课啦附近开了多少积分 slfjdskj lk上来看积分累块积苏',
-      description: '寻一个安静的老板',
+      task_place: '教室S316',
+      description: '寻一个安静的老板一同复习ＤＳＰ，没别的要求，有钱就行',
       date: '2019-9-9',
       startTime: '10:50',
       endTime: '19:50'
     }
   },
  
-
-  /**
-   * Lifecycle function--Called when page load
-   */
   onLoad: function (options) {
 
   },

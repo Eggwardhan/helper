@@ -5,7 +5,7 @@ Page({
    * Page initial data
    */
   data: {
-    motto: '知乎--微信小程序版',
+    motto: '???',
     userInfo: {}
   },
 

@@ -1,5 +1,6 @@
 /* pages/index/index.wxss */
 /* pages/info/info.wxss */
+@import '../../weui.wxss';
 .saveInfo {
   width: 95%;
   position: absolute;
