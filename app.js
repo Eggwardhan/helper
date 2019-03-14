@@ -1,23 +1,61 @@
 //app.js
 App({
   onLaunch: function () {
+    var that = this;
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    wx.checkSession({
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      fail: function (res) {
+        // 登录
+        wx.login({
+          success: res => {
+            var code = res.code;
+            console.log(code)
+            if (code) {
+              if (that.globalData.openid == "") {
+                wx.request({
+                  url: "https://www.bupt404.cn/login.php",
+                  data: { code: code },
+                  header: { 'content-type': 'application/x-www-form-urlencoded' },
+                  method: 'POST',
+                  success: function (e) {
+                    console.log(e)
+                    console.log(e.data)
+                    let openid = e.data.openid
+                    let session_key = e.data.session_key
+                    wx.setStorageSync('openid', openid);
+                    wx.setStorageSync('session_key', session_key)
+
+                  }
+                })
+                wx.getUserInfo({
+                  success: function (res) {
+                    userInfo
+                    wx.setStorageSync('userInfo', res.userInfo)
+                  }
+                })
+              } else {
+                console.log("auth:" + that.globalData.auth)
+              }
+            } else {
+              console.log('fail to get login !' + res.errMsg)
+            }
+          }
+        })
       }
     })
-    // 获取用户信息
-  
+
+
   },
   globalData: {
     userInfo: null,
-    hasAuth:null,
-    hasRegister:true
+    hasAuth: null,
+    hasRegister: true,
+    code: null,
+    openid: "",
+    session_key: ""
   }
 })

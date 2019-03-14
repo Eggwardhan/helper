@@ -76,7 +76,7 @@ Page({
         break;
       case "gender":
         this.setData({
-          gender: that.data.genderList[e.detail.value],
+          gender: that.datadata.genderList[e.detail.value],
           genderIndex: e.detail.value
         });
         break;
@@ -115,12 +115,13 @@ Page({
   },
   saveInfo() {
     wrapper.request({
-      url: "yjw404.cn/",
+      url: "yjw404.cn/userinfo",
       data: {
+        openid:wx.getStorageSync(openid),
         name: this.data.name,
-        school_id: this.data.schoolId,
-        phone_number: this.data.phone,
-        department: this.data.schoolDepartment,
+        schoolid: this.data.schoolId,
+        phoner: this.data.phone,
+        schoolDepartment: this.data.schoolDepartment,
         gender:this.data.gender
       },
       method: "POST",
