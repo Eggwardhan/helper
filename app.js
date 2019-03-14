@@ -1,48 +1,61 @@
 //app.js
 App({
   onLaunch: function () {
-    var that=this;
+    var that = this;
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    wx.checkSession({
 
-    // 登录
-    wx.login({
-      success: res => {
-        var code=res.code;
-        if(code){
-          if(that.globalData.auth==""){
-            wx.request({
-              url:"https://www.bupt404.cn/login?code="+code,
-              method:'POST',
-              success:function(res){
-                console.log(res)
-                let auth1=res.data.auth
-                wx.setStorageSync('auth1',auth1);
+      fail: function (res) {
+        // 登录
+        wx.login({
+          success: res => {
+            var code = res.code;
+            console.log(code)
+            if (code) {
+              if (that.globalData.openid == "") {
+                wx.request({
+                  url: "https://www.bupt404.cn/login.php",
+                  data: { code: code },
+                  header: { 'content-type': 'application/x-www-form-urlencoded' },
+                  method: 'POST',
+                  success: function (e) {
+                    console.log(e)
+                    console.log(e.data)
+                    let openid = e.data.openid
+                    let session_key = e.data.session_key
+                    wx.setStorageSync('openid', openid);
+                    wx.setStorageSync('session_key', session_key)
 
+                  }
+                })
+                wx.getUserInfo({
+                  success: function (res) {
+                    userInfo
+                    wx.setStorageSync('userInfo', res.userInfo)
+                  }
+                })
+              } else {
+                console.log("auth:" + that.globalData.auth)
               }
-            })
-            wx.getUserInfo({
-              success:function(res){
-                userInfo
-                wx.setStorageSync('userInfo',res.userInfo)
-              }
-            })
+            } else {
+              console.log('fail to get login !' + res.errMsg)
+            }
           }
-          else{console.log("auth:"+that.globalData.auth)}
-        }
-        else{
-          console.log('fail to get login !'+res.errMsg)
-        }
+        })
       }
     })
-   
-  
+
+
   },
   globalData: {
     userInfo: null,
-    hasAuth:null,
-    hasRegister:true
+    hasAuth: null,
+    hasRegister: true,
+    code: null,
+    openid: "",
+    session_key: ""
   }
 })

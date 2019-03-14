@@ -20,6 +20,7 @@
         <picker class="weui-btn" mode="time" value="{{endTime}}" id='endTime' start="08:00" end="23:00" bindchange="bindinput">
           <button type='default'>{{endTime}}</button>
         </picker>
+        <view id="place">地点</view>
       </view>
       <button class="weui-btn" type="primary" disabled="{{postActive}}">提交</button>
     </view>
