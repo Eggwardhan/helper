@@ -24,8 +24,8 @@ App({
                   success: function (e) {
                     console.log(e)
                     console.log(e.data)
-                    let openid = e.data.openid
-                    let session_key = e.data.session_key
+                    let openid = e.data[0]['openid']
+                    let session_key = e.data[0]['session_key']
                     wx.setStorageSync('openid', openid);
                     wx.setStorageSync('session_key', session_key)
 
