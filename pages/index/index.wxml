@@ -3,26 +3,43 @@
 
   <view class='page'>
     <view class='page__hd'>
-      <view class="page__title">自习预约时间</view>
-      <view class="page__desc">选择你与神秘人预约自习的时间。</view>
+      <view class="page__title">自习预约</view>
+      <view class="page__desc">选择你与神秘人预约自习的时间与地点。</view>
     </view>
-    <view class="page__bd page__bd_spacing">
-      <view class="weui-btn-area">
-        <view>自习预订日期</view>
-        <picker class="weui-btn" mode="date" value="{{date}}" id='date' start="2019-03-13" end="2022-10-10" bindchange="bindinput">
-          <button type='default'>{{date}}</button>
-        </picker>
-        <view>开始时间</view>
-        <picker class="weui-btn" mode="time" value="{{startTime}}" id='startTime' start="08:00" end="23:00" bindchange="bindinput">
-          <button type='default'>{{startTime}}</button>
-        </picker>
-        <view>结束时间</view>
-        <picker class="weui-btn" mode="time" value="{{endTime}}" id='endTime' start="08:00" end="23:00" bindchange="bindinput">
-          <button type='default'>{{endTime}}</button>
-        </picker>
-        <view id="place">地点</view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="place-label">地点</view>
       </view>
-      <button class="weui-btn" type="primary" disabled="{{postActive}}">提交</button>
+      <view class="weui-cell__bd">
+        <input class="weui-input" id="place" bindchange="bindinput"  placeholder="请输入具体约定地点" />
+      </view>
+    </view>
+  </view>
+
+  <view class="page__bd page__bd_spacing">
+    <view class="weui-btn-area">
+      <view>自习预订日期</view>
+      <picker class="weui-btn" mode="date" value="{{date}}" id='date' start="{{date}}" end="2022-10-10" bindchange="bindinput">
+        <button type='default'>{{date}}</button>
+      </picker>
+      <view>开始时间</view>
+      <picker class="weui-btn" mode="time" value="{{startTime}}" id='startTime' start="08:00" end="23:00" bindchange="bindinput">
+        <button type='default'>{{startTime}}</button>
+      </picker>
+      <view>结束时间</view>
+      <picker class="weui-btn" mode="time" value="{{endTime}}" id='endTime' start="08:00" end="23:00" bindchange="bindinput">
+        <button type='default'>{{endTime}}</button>
+      </picker>
+       <view class="weui-cells__title">您对对象的具体要求</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" id="demand" bindblur="bindinput" placeholder="请输入要求" auto-height  auto-focus />
+                    <view class="weui-textarea-counter">0/200</view>
+                </view>
+            </view>
+        </view>
+      <button class="weui-btn" type="primary" disabled="{{postDisable}}" bindtap='saveDate'>提交</button>
     </view>
   </view>
 </view>
