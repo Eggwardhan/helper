@@ -1,12 +1,12 @@
 // pages/index/index.js
 var util=require('../../utils/util.js')
 const app = getApp()
-
+var db=require('../../utils/db.js')
 Page({
   data: {
     hasAuth :false,
     hasRegister:false, 
-    postActive:false,
+    postDisable:true,
     schoolDepartmentList:['信息与通信工程学院','计算机学院','自动化学院','软件学院','数字媒体与设计艺术学院','现代邮政学院','继续教育学院','国际学院','网络教育学院','电子工程学院','理学院','经济管理学院','公共管理学院','人文学院','马克思主义学院','网络空间安全学院','光电信息学院','民族教育学院','网络技术研究院','叶培大创新学院'],
     departmentIndex: 0,
     gender:'男',
@@ -14,8 +14,56 @@ Page({
     genderList:['男','女'],
     genderIndex:0,
     date:null,
-    startTime:util.formatTime(new Date()),
-    endTime:null
+    startTime:null,
+    endTime:null,
+    demand:null,
+  },
+  saveDate(e){
+    wx.request({
+      url: 'https://www.bupt404.cn/order.php',
+      method:"POST",
+      data:{
+        openid:wx.getStorageSync('openid'),
+        task_place:this.data.place,
+        dates:this.data.date,
+        startTime:this.data.startTime,
+        endTime:this.data.endTime,
+        demand:this.data.demand
+      },
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      success:(res)=>{
+        if (res.data.status) {
+          wx.showToast({
+            title: '预约成功，请耐心等待',
+            icon: 'success',
+            duration: 1500,
+            success: () => {
+              setTimeout(() => {
+                wx.navigateTo({
+                  url: '/pages/index/index',
+                });
+              }, 1500)
+            }
+          })
+          /*wx.redirectTo({
+            url: "/pages/index/index"
+          })*/
+        }
+
+      },
+      fail:(res)=>{
+        wx.showToast({
+            title:'预约失败',
+            icon:'warn',
+            duration:2500,
+            success:()=>{
+              wx.navigateTo({
+                    url:'/pages/index/index'
+              })
+            }
+        })
+      }
+    })
   },
   bindinput(e){
 
@@ -30,14 +78,20 @@ Page({
         reg=/^[\u4e00-\u9fa5]+$/;
         if(reg.test(e.detail.value)){
           this.setData({
-            nameWarn:false
+            nameWarn:false,
           })
           }else{
             this.setData({
-              nameWarn:true
+              nameWarn:true,
             })
           }
           break;
+      case "demand":
+      console.log(e.detail.value)
+        this.setData({
+          demand:e.detail.value
+        })    
+        break;
       case "schoolId":
         this.setData({
           schoolId:e.detail.value
@@ -80,6 +134,15 @@ Page({
           genderIndex: e.detail.value
         });
         break;
+      case "place":
+        this.setData({
+          place:e.detail.value,
+          postDisable:false
+        })  
+        console.log(that.data.place)
+
+        console.log(that.data.postDisable)
+        break;
       case "date":
         this.setData({
           date:e.detail.value
@@ -117,10 +180,10 @@ Page({
     wrapper.request({
       url: "yjw404.cn/userinfo",
       data: {
-        openid:wx.getStorageSync(openid),
-        name: this.data.name,
+        openid:wx.getStorageSync('openid'),
+        real_name: this.data.name,
         schoolid: this.data.schoolId,
-        phoner: this.data.phone,
+        phone: this.data.phone,
         schoolDepartment: this.data.schoolDepartment,
         gender:this.data.gender
       },
@@ -131,12 +194,14 @@ Page({
       success: res => {
         if (res.data.status) {
           wx.showToast({
-            title: '认证成功，请清空缓存后重新进入小程序',
+            title: '认证成功',
             icon: 'success',
             duration: 1500,
             success: () => {
               setTimeout(() => {
-                wx.navigateBack();
+                wx.navigateTo({
+                  url: '/pages/index/index',
+                });
               }, 1500)
             }
           })
@@ -181,6 +246,8 @@ Page({
             // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
             wx.getUserInfo({
               success: res => {
+                wx.setStorageSync(userInfo, res.userInfo)
+                
                 // 可以将 res 发送给后台解码出 unionId
                 // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
                 // 所以此处加入 callback 以防止这种情况
@@ -192,13 +259,13 @@ Page({
           }
         }
       })
-      console.log(app.globalData.hasAuth)
+      //console.log(app.globalData.hasAuth)
 
       this.setData({
         hasAuth: app.globalData.hasAuth,
         hasRegister: app.globalData.hasRegister
       })
-      console.log(this.data.hasAuth)
+      //console.log(this.data.hasAuth)
     },
 
 

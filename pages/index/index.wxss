@@ -9,6 +9,13 @@
   border-radius: 5rpx;
   color: white;
 }
+.place-label{
+  width: 105ps;
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+  word-wrap: break-word;
+  word-break: break-all;
+}
 .active {
   background-color: #01b0f1;
 }
