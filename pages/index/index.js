@@ -19,6 +19,7 @@ Page({
     demand:null,
   },
   saveDate(e){
+    console.log('saveDate')
     wx.request({
       url: 'https://www.bupt404.cn/order.php',
       method:"POST",
@@ -32,12 +33,14 @@ Page({
       },
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       success:(res)=>{
-        if (res.data.status) {
+        console.log(res)
+        if (res.statusCode==200) {
           wx.showToast({
             title: '预约成功，请耐心等待',
             icon: 'success',
             duration: 1500,
             success: () => {
+              console.log('success upload')
               setTimeout(() => {
                 wx.navigateTo({
                   url: '/pages/index/index',
@@ -51,7 +54,9 @@ Page({
         }
 
       },
+  
       fail:(res)=>{
+        console.log(res.errMsg)
         wx.showToast({
             title:'预约失败',
             icon:'warn',
@@ -231,6 +236,9 @@ Page({
       let reg = /\s/
       let time1=time.split(reg)
       let timee1=timee.split(reg)
+      time1[0] = time1[0].replace(/\//g, '-')
+      time1[1]=time1[1].replace(/\:\d{2}$/,'')
+      timee1[1] = timee1[1].replace(/\:\d{2}$/, '')
       this.setData({
         startTime:time1[1],
         date:time1[0],
