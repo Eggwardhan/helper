@@ -193,7 +193,7 @@ Page({
   },
   saveInfo() {
     wx.request({
-      url: "https://www.bupt404.cn/userinfo.php",
+      url: "https://www.bupt404.cn/posrtinfo.php",
       header: {
         "content-type": "application/x-www-form-urlencoded"
       },
@@ -203,7 +203,8 @@ Page({
         schoolid: this.data.schoolId,
         phone: this.data.phone,
         schoolDepartment: this.data.schoolDepartment,
-        gender: this.data.gender
+        gender: this.data.gender,
+        avatarUrl:wx.getStorageSync("userinfo").avatarUrl
       },
       method: "POST",
       

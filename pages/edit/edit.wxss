@@ -1,0 +1,37 @@
+/* pages/index/index.wxss */
+/* pages/info/info.wxss */
+@import '../../weui.wxss';
+.saveInfo {
+  width: 95%;
+  position: absolute;
+  bottom: 30rpx;
+  left: 2.5%;
+  border-radius: 5rpx;
+  color: white;
+}
+.place-label{
+  width: 105ps;
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.active {
+  background-color: #01b0f1;
+}
+.negative {
+  background-color: #ebebeb;
+  color: #bfbfbf;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+button::after {
+  border: none;
+}
+.button-hover {
+  background-color: transparent;
+}

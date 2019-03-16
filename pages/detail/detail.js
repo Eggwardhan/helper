@@ -3,7 +3,7 @@ Page({
   data: {
     task: {
       avatar_img: '../../resources/active.png',
-      rea_name: 'eggwardhan',
+      real_name: 'eggwardhan',
       user_intro:'一个不会pop的dj不是好程序员',
       task_place: '教室S316',
       description: '敲李来来的代码内容充足，有着丰厚的',
@@ -24,9 +24,21 @@ Page({
           method:'GET',
           data:{task_id:options.task_id},
           success:(res)=>{
-            that.setData({
+            this.setData({
               task:res.data.task
             })
+          },
+          fail:(res)=>{
+           wx.showToast({
+             title: '约会丢失了',
+             icon:'icon',
+             duration:"2000",
+             success:()=>{
+                wx.navigateBack({
+                  delta:1
+                })
+             }
+           })
           }
         })
   },

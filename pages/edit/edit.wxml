@@ -1,0 +1,81 @@
+<view class="page">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input {{nameWarn?'weui-cell_warn':''}}">
+      <view class="weui-cell__hd">
+        <view class="weui-label">姓名</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="text" id="realname" placeholder="{{realname?realname:'请输入姓名'}}" bindinput="bindinput" value="{{realname}}" />
+      </view>
+      <view wx:if="{{nameWarn}}" class="weui-cell__ft">
+        <icon color="#E64340" size="23" type="warn"></icon>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input {{schoolIdWarn?'weui-cell_warn':''}}">
+      <view class="weui-cell__hd">
+        <view class="weui-label">学号/工号</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="text" id="schoolid" placeholder="请输入学号/工号" bindinput="bindinput" value="{{schoolid}}" />
+      </view>
+      <view wx:if="{{schoolIdWarn}}" class="weui-cell__ft">
+        <icon color="#E64340" size="23" type="warn"></icon>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="weui-cells weui-cells_after-title ">
+    <view class="weui-cell weui-cell_input ">
+      <view class="weui-cell__hd">
+        <view class="weui-label">手机</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="text" id="phone" placeholder="请输入手机号码" bindinput="bindinput" value="{{phone}}" />
+      </view>
+      <view class="weui-cell__ft">
+        <button open-type="getPhoneNumber" bindgetphonenumber="getWeixinPhone">
+          <view class="weui-vcode-btn">直接绑定</view>
+        </button>
+      </view>
+    </view>
+    <view wx:if="{{phoneWarn}}" class="weui-cell__ft">
+      <icon color="#E64340" size="23" type="warn"></icon>
+    </view>
+  </view>
+  <view class="weui-cells__title">选择</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_select ">
+      <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">学院</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker id="schoolDepartment" bindchange="bindinput" value="{{departmentIndex}}" range='{{schoolDepartmentList}}'>
+          <view class='weui-select weui-select_in-select-after'>{{schoolDepartment}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_select ">
+      <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">性别</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker id="gender" bindchange="bindinput" value="{{genderIndex}}" range='{{genderList}}'>
+          <view class='weui-select weui-select_in-select-after'>{{gender}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+      <view class="weui-cells__title">个人简介</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea class="weui-textarea" id="user_intro" bindinput="bindinput" maxlength='200' placeholder="跟小伙伴聊聊你自己吧" style="height: 3.3em" auto-focus />
+            <view class="weui-textarea-counter">{{wordNum|0}}/200</view>
+          </view>
+        </view>
+      </view>
+    <button class='saveInfo {{allowSave?"active ":"negative "}}'  bindtap="changeInfo">修改资料</button>
+  </view>

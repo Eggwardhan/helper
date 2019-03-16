@@ -10,7 +10,7 @@ Page({
       avatar_img: '../../resources/active.png',
       user_name: 'eggwardhan',
       task_place: '小树林有无',
-      description: '寻一个安静的老板',
+      demand: '寻一个安静的老板',
       date: '2019-9-9',
       startTime: '10:50',
       endTime: '19:50'
@@ -21,7 +21,7 @@ Page({
       avatar_img: '../../resources/active.png',
       user_name: '我是谁我在那',
       task_place: '图书馆3lS46',
-      description: '是兄弟就来肝我',
+      demand: '是兄弟就来肝我',
       date: '2019-9-9',
       startTime: '10:50',
       endTime: '19:50'
@@ -96,7 +96,19 @@ Page({
     }
   },
   onLoad: function (options) {
-
+      wx.request({
+        url:"https://www.bupt404.cn/queryall.php",
+        method:"GET",
+        header:{"Content-Type":"json"},
+        data:{
+          openid:wx.getStorageSync("openid")
+        },
+        success:(res)=>{
+          this.setData({
+              task:res.data
+          })
+        }
+      })
   },
 
   onReady: function () {

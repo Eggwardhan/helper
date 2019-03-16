@@ -8,19 +8,19 @@ Page({
       text: '编辑资料',
       isunread: true,
       unreadNum: 2,
-      url: "/pages/order/order"
+      url: "/pages/edit/edit"
     }, {
       icon: '/resources/iconfont-address.png',
       text: '消息提醒',
       isunread: false,
       unreadNum: 2,
-      url: "/pages/me/address"
+      url: "/pages/notify/notify"
     },{
         icon: '/resources/iconfont-address.png',
-        text: '我的约会',
+        text: '我的自习',
         isunread: false,
         unreadNum: 0,
-        url: "/pages/me/address"
+        url: "/pages/mytask/mytask"
     }
     ]
   },

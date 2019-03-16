@@ -11,7 +11,8 @@
     "pages/discover/discover",
     "pages/me/me",
     "pages/detail/detail",
-    "pages/edit/edit"
+    "pages/edit/edit",
+    "pages/myTasks/myTasks"
   ],
   "window": {
     "backgroundTextStyle": "light",
