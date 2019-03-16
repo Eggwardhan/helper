@@ -60,11 +60,9 @@ Page({
     })
   },
   goDetail(e) {
-    console.log(this.data.task[0].task_id)
-    console.log(e.target)
-    /*wx.navigateTo({
-      url: '/pages/detail/detail?task_id=' + e.target.dataset.task_id,
-    })*/
+    wx.navigateTo({
+      url: '/pages/detail/detail?task_id=' + e.currentTarget.dataset.id,
+    })
 
   },
   bindinput(e) {

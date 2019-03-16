@@ -52,7 +52,7 @@
 
 <view class='container' >
   <block wx:for="{{search_task_list ?  search_task_list:task}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
-    <view class="task-item" bindtap='goDetail' id="{{idx}}" data-id="{{item}}">
+    <view class="task-item" bindtap='goDetail' id="{{idx}}" data-id="{{item.task_id}}">
       <view class="task-source">
         <a class="">
           <view class="avatar">
