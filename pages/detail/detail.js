@@ -3,10 +3,10 @@ Page({
   data: {
     task: {
       avatar_img: '../../resources/active.png',
-      user_name: 'eggwardhan',
+      rea_name: 'eggwardhan',
       user_intro:'一个不会pop的dj不是好程序员',
       task_place: '教室S316',
-      description: '寻一个安静的老板一同复习ＤＳＰ，没别的要求，有钱就行',
+      description: '敲李来来的代码内容充足，有着丰厚的',
       date: '2019-9-9',
       startTime: '10:50',
       endTime: '19:50'
@@ -14,7 +14,21 @@ Page({
   },
  
   onLoad: function (options) {
-
+    let that=this;
+    console.log(options)
+        wx.request({
+          url:'https://www.bupt404.cn/getDetail',
+          header: {
+            "content-type": "application/x-www-form-urlencoded"
+          },
+          method:'GET',
+          data:{task_id:options.task_id},
+          success:(res)=>{
+            that.setData({
+              task:res.data.task
+            })
+          }
+        })
   },
 
   /**

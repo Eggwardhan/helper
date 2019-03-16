@@ -171,3 +171,14 @@
 .container .task-item .task-content .date .dot ::after{
   content: "•";
 }
+button {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+button::after {
+  border: none;
+}
+.button-hover {
+  background-color: transparent;
+}

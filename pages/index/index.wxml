@@ -1,5 +1,5 @@
 <!--index2.wxml-->
-<view wx:if="{{hasAuth}}&&{{hasRegister}}">
+<view wx:if="{{hasAuth&&hasRegister}}">
 
   <view class='page'>
     <view class='page__hd'>
@@ -11,7 +11,7 @@
         <view class="place-label">地点</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" id="place" bindchange="bindinput"  placeholder="请输入具体约定地点" />
+        <input class="weui-input" id="place" bindchange="bindinput" placeholder="请输入具体约定地点" />
       </view>
     </view>
   </view>
@@ -30,15 +30,15 @@
       <picker class="weui-btn" mode="time" value="{{endTime}}" id='endTime' start="08:00" end="23:00" bindchange="bindinput">
         <button type='default'>{{endTime}}</button>
       </picker>
-       <view class="weui-cells__title">您对对象的具体要求</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" id="demand" bindblur="bindinput" placeholder="请输入要求" auto-height  auto-focus />
-                    <view class="weui-textarea-counter">0/200</view>
-                </view>
-            </view>
+      <view class="weui-cells__title">您对对象的具体要求</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea class="weui-textarea" id="demand" bindinput="bindinput" maxlength='200' placeholder="请输入要求" style="height: 3.3em" auto-focus />
+            <view class="weui-textarea-counter">{{wordNum|0}}/200</view>
+          </view>
         </view>
+      </view>
       <button class="weui-btn" type="primary" disabled="{{postDisable}}" bindtap='saveDate'>提交</button>
     </view>
   </view>
