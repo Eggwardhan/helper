@@ -4,7 +4,7 @@ Page({
     allowSave:true,
     schoolDepartmentList: ['信息与通信工程学院', '计算机学院', '自动化学院', '软件学院', '数字媒体与设计艺术学院', '现代邮政学院', '继续教育学院', '国际学院', '网络教育学院', '电子工程学院', '理学院', '经济管理学院', '公共管理学院', '人文学院', '马克思主义学院', '网络空间安全学院', '光电信息学院', '民族教育学院', '网络技术研究院', '叶培大创新学院'],
     departmentIndex: 0,
-    gender: '男',
+    gender: "",
     schoolDepartment: '信息与通信工程学院',
     genderList: ['男', '女'],
     genderIndex: 0,
@@ -13,13 +13,12 @@ Page({
     phone:null,
     realname:null,
     schoolid:null,
-    user_intro:""
+    user_intro:null
   },
   bindinput(e) {
     let reg;
     let that = this;
     switch (e.target.id) {
-
       case 'realname':
         this.setData({
           realname: e.detail.value
@@ -88,7 +87,7 @@ Page({
     this.getSaveBtn();
   },
   getSaveBtn() {
-
+      console.log(this.data)
     if (this.data.realname && this.data.schoolid && this.data.phone &&
       !this.data.nameWarn && !this.data.schoolIdWarn && !this.data.phoneWarn) {
       this.setData({
@@ -104,18 +103,18 @@ Page({
       wx.request({
         url: 'https://www.bupt404.cn/postinfo.php',
         method:"POST",
-        header: {
-          "ContentType": "application/x-www-form-urlencoded"},
+       header: {"Content-Type": "application/x-www-form-urlencoded"},
         data:{
           openid:wx.getStorageSync('openid'),
-          realname: this.data.name,
-          schoolid: this.data.schoolId,
+          realname: this.data.realname,
+          schoolid: this.data.schoolid,
           phone: this.data.phone,
           schoolDepartment: this.data.schoolDepartment,
           gender: this.data.gender,
-          avatarUrl: wx.getStorageSync("userinfo").avatarUrl,
-          user_name: wx.getStorageSync("userinfo").nickName,
-          user_intro:this.data.user_intro
+          user_intro: this.data.user_intro,
+          avatarUrl: wx.getStorageSync("userInfo").avatarUrl,
+          user_name: wx.getStorageSync("userInfo").nickName
+          
           },
           success:(res)=>{
             console.log(res)
@@ -136,6 +135,20 @@ Page({
                 url: "/pages/index/index"
               })*/
             }
+          },
+          fail:(res)=>{
+            wx.showToast({
+              title: '修改失败',
+              icon: 'warn',
+              duration: 1500,
+              success: () => {
+                setTimeout(() => {
+                  wx.navigateTo({
+                    url: '/pages/me/me',
+                  });
+                }, 1500)
+              }
+            })
           }
       })
   },
@@ -156,7 +169,8 @@ Page({
           schoolid: res.data.schoolid,
           user_intro: res.data.user_intro,
           schoolDepartment: res.data.schoolDepartment,
-          gender: res.data.gender
+          gender: res.data.gender,
+          user_intro:res.data.user_intro
 
         })
       }

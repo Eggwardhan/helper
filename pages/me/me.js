@@ -20,7 +20,7 @@ Page({
         text: '我的自习',
         isunread: false,
         unreadNum: 0,
-        url: "/pages/mytask/mytask"
+        url: "/pages/myTasks/myTasks"
     }
     ]
   },
