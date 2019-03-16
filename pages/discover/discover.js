@@ -8,16 +8,16 @@ Page({
     task: [{
       task_id: '123sss',
       avatar_img: '../../resources/active.png',
-      user_name: '我是谁我在那',
+      realname: '我是谁我在那',
       task_place: '貌似网络走丢了哦',
       demand: '请刷新或联系管理员',
-      date: '5555-5-5',
+      dates: '5555-5-5',
       startTime: '00:00',
       endTime: '23:33'
 
     }],
     search_task_list: null,
-    date:null,
+    datess:null,
     startTime:null,
     endTime:null
     ///departmentSearch:null
@@ -27,7 +27,7 @@ Page({
       url:'https://www.bupt404.cn/search_task.php',
       methond:"POST",
       data:{
-        date:this.data.date,
+        datess:this.data.datess,
         startTime:this.data.startTime,
         endTime:this.data.endTime,
         department: this.data.schoolDepartmentList[departmentIndex]
@@ -66,9 +66,9 @@ Page({
         });
         break;
 
-      case "date":
+      case "dates":
         this.setData({
-          date: e.detail.value
+          dates: e.detail.value
         });
         break;
       case "startTime":

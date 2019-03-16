@@ -14,8 +14,8 @@ Page({
 
   },
   onLoad: function (options) {
-   /* wx.request({
-      url: "https://www.bupt404.cn/queryall.php",
+    wx.request({
+      url: "https://www.bupt404.cn/mydates.php",
       method: "GET",
       header: { "Content-Type": "json" },
       data: {
@@ -26,7 +26,7 @@ Page({
           task: res.data
         })
       }
-    })*/
+    })
   },
 
 

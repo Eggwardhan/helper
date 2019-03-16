@@ -4,8 +4,8 @@
     <view class="page__bd page__bd_spacing">
       <view class="weui-btn-area">
         <view>自习预订日期</view>
-        <picker class="weui-btn" mode="date" value="{{date}}" id='date' start="{{date}}" end="2022-10-10" bindchange="bindinput">
-          <button type='default'>{{date}}</button>
+        <picker class="weui-btn" mode="date" value="{{dates}}" id='dates' start="{{dates}}" end="2022-10-10" bindchange="bindinput">
+          <button type='default'>{{dates}}</button>
         </picker>
         <view>开始时间</view>
         <picker class="weui-btn" mode="time" value="{{startTime}}" id='startTime' start="08:00" end="23:00" bindchange="bindinput">
@@ -56,14 +56,14 @@
       <view class="task-source">
         <a class="">
           <view class="avatar">
-            <image src="{{item.avatar_img}}"></image>
+            <image src="{{item.avatarUrl}}"></image>
           </view>
-          <text>{{item.user_name}}</text>
+          <text>{{item.realname}}</text>
         </a>
         <image class='item-more' mode='aspectFit' src='/resources/more.png'></image>
       </view>
       <view class="task-content">
-        <view class="task" id="{{user_id}}" bindtap="bindUserTap">
+        <view class="task" id="{{item.openid}}" bindtap="bindUserTap">
           <a class="task-link">
             <text>{{item.task_place}}</text>
           </a>
@@ -74,7 +74,7 @@
           </view>
           <view class="date" bindtap="bindItemTap">
             <view class="">
-              <a>{{item.date}} </a>
+              <a>{{item.dates}} </a>
             </view>
             <view class="">
               <a>{{item.startTime}} -</a>

@@ -1,7 +1,7 @@
 <!--pages/detail/detail.wxml-->
 <view class="container">
   <view class="information" bindtap="toInformation">
-    <text class="information-title"> {{task.date }}/{{task.startTime}}-{{task.endTime}}\n{{task.task_place}}</text>
+    <text class="information-title"> {{dates }}/{{startTime}}-{{endTime}}\n{{task_place}}</text>
   </view>
   <view class="task-wrp">
     <view class="bg-half"></view>
@@ -10,8 +10,8 @@
         <image src="../../resources/active.png"></image>
       </view>
       <view class="task-info flex-item">
-        <text class="task-name">{{task.real_name}}</text>
-        <text class="task-des">{{task.user_intro}}</text>
+        <text class="task-name">{{realname}}</text>
+        <text class="task-des">{{user_intro}}</text>
       </view>
       <view class="follow flex-item">
         <text>无法关注</text>
@@ -19,15 +19,15 @@
     </view>
   </view>
   <view class="task-content">
-    <text>{{task.description}}</text>
+    <text>{{demand}}</text>
   </view>
 
   <view class="task-footer flex-wrp">
-    <view class="good flex-item">
+    <view class="good flex-item" bindtap='reserve'>
       <view class="order">
         <image src="../../resources/flag.png"></image>
       </view>
-      <view class="order-num">预约</view>
+      <view class="order-num">{{situation}}</view>
     </view>
     <view class="operation-wrp flex-item">
       <view class="operation flex-wrp flex-tab">
