@@ -27,7 +27,7 @@ Page({
       url:'https://www.bupt404.cn/search_task.php',
       methond:"POST",
       data:{
-        datess:this.data.datess,
+        search_dates:this.data.datess,
         startTime:this.data.startTime,
         endTime:this.data.endTime,
         department: this.data.schoolDepartmentList[departmentIndex]
