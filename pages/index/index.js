@@ -315,6 +315,8 @@ Page({
         }
       }
     })
+    console.log(this.data.hasAuth)
+    console.log(this.data.hasRegister)
     /*console.log(app.globalData.hasAuth)
 
     this.setData({

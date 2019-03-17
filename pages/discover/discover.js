@@ -55,7 +55,6 @@ Page({
 
   },
   bindinput(e) {
-
     let reg;
     let that = this;
     switch (e.target.id) {

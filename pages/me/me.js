@@ -1,7 +1,7 @@
 var app = getApp()
 Page({
   data: {
-    hasLogin: true,/* wx.canIUse('button.open-type.getUserInfo'),*/
+    hasRegister: wx.canIUse('button.open-type.getUserInfo'),
     userInfo: {},
     userListInfo: [{
       icon: '/resources/iconfont-order.png',
@@ -49,7 +49,11 @@ Page({
       }
     })
   },
-
+  register:function(){
+    wx.switchTab({
+      url: '/pages/ index/index'
+    })
+  },
   jumpUrl: function (e) {
     var url = e.currentTarget.dataset.url;
     wx.navigateTo({

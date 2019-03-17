@@ -7,10 +7,9 @@ Page({
     user_intro: '一个不会pop的dj不是好程序员',
     task_place: '代码全不对',
     demand: '如果你看到这段话说明程序出Bug了',
-    date: '2019-9-9',
+    dates: '2019-9-9',
     startTime: '10:50',
     endTime: '19:50'
-
   },
   reserve() {
     if (task_status == 0) {
