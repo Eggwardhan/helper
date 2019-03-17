@@ -1,24 +1,25 @@
 <!--pages/discover/discover.wxml-->
 <view wx:if='{{searchActive}}'>
-  <view class='page '>
-    <view class="page__bd">
+  <view class='page'>
+    <view class="page__bd page__bd_spacing">
       <view class="weui-btn-area">
         <view>自习预订日期</view>
-        <picker class="weui-btn" mode="date" value="{{date}}" id='date ' start="2018-09-26" end="2022-10-10" bindchange="bindinput">
-          <button type='default '>{{date}}</button>
+        <picker class="weui-btn" mode="date" value="{{dates}}" id='dates'  end="2022-10-10" bindchange="bindinput">
+          <button type='default'>{{dates}}</button>
         </picker>
         <view>开始时间</view>
-        <picker class="weui-btn" mode="time" value="{{startTime}}" id='startTime ' start="08:00" end="22:00" bindchange="bindinput">
-          <button type='default '>{{startTime}}</button>
+        <picker class="weui-btn" mode="time" value="{{startTime}}" id='startTime' start="08:00" end="23:00" bindchange="bindinput">
+          <button type='default'>{{startTime}}</button>
         </picker>
-        <view>结束时间</view>
-        <picker class="weui-btn" mode="time" value="{{endTime}}" id='endTime ' start="{{startTime}}+3600" end="22:00" bindchange="bindinput">
-          <button type='default '>{{endTime}}</button>
+        <view class="weui-label">学院</view>
+        <picker id="schoolDepartment" bindchange="bindinput" value="{{departmentIndex}}" range='{{schoolDepartmentList}}'>
+          <button type="default">{{schoolDepartmentList[departmentIndex]}}</button>
         </picker>
-        <view>院系</view>
-        <picker class="weui-btn " id=" schoolDepartment" bindchange="bindinput " value="{{departmentIndex}} " range='{{schoolDepartmentList}} '>
-          <view class='weui-select weui-select_in-select-after '>{{schoolDepartmentList[departmentIndex]}}</view>
-        </picker>
+
+
+
+        <button class="weui-btn mini-btn" type="primary" size="mini" bindtap="search_task">查找</button>
+        <button id ="cancel" class="weui-btn mini-btn" type="warn" size="mini" style="margin-left:400rpx" bindtap="searchClick">取消</button>
 
       </view>
     </view>
@@ -29,50 +30,50 @@
 <view wx:if='{{!searchActive}}' class="page__bd">
   <view class="weui-search-bar">
     <view class="weui-search-bar__form">
-      <view class="weui-search-bar__box">
+      <view class="weui-search-bar__box" bindtap="searchClick">
         <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-        <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+        <input type="text" class="weui-search-bar__input" placeholder="筛选自习" value="{{inputVal}}" focus="{{inputShowed}}" />
         <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
           <icon type="clear" size="14"></icon>
         </view>
       </view>
-      <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+      <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="searchClick">
         <icon class="weui-icon-search" type="search" size="14"></icon>
-        <view class="weui-search-bar__text">搜索</view>
+        <view class="weui-search-bar__text">筛选</view>
       </label>
     </view>
     <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
   </view>
 </view>
 
-<view class='container'>
-  <block wx:for="{{task}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
-    <view class="task-item"   bindtap='goDetail' id="{{task.task_id}}">
+<view class='container' >
+  <block wx:for="{{search_task_list ?  search_task_list : task}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+    <view class="task-item" bindtap='goDetail' id="{{idx}}" data-id="{{item.task_id}}">
       <view class="task-source">
-        <a class="" >
+        <a class="">
           <view class="avatar">
-            <image src="{{item.avatar_img}}"></image>
+            <image src="{{item.avatarUrl}}"></image>
           </view>
-          <text>{{item.user_name}}</text>
+          <text>{{item.realname}}</text>
         </a>
         <image class='item-more' mode='aspectFit' src='/resources/more.png'></image>
       </view>
       <view class="task-content">
-        <view class="task" id="{{user_id}}" bindtap="bindUserTap">
+        <view class="task" id="{{item.openid}}" bindtap="bindUserTap">
           <a class="task-link">
             <text>{{item.task_place}}</text>
           </a>
         </view>
         <view class="task-body">
           <view bindtap="bindItemTap">
-            <text class="task-txt" aid="{{task.task_id}}">{{item.description}}</text>
+            <text class="task-txt" aid="{{task.task_id}}">{{item.demand}}</text>
           </view>
           <view class="date" bindtap="bindItemTap">
             <view class="">
-              <a>{{item.date}} </a>
+              <a>{{item.dates}} </a>
             </view>
             <view class="">
-              <a>{{item.startTime}}  -</a>
+              <a>{{item.startTime}} -</a>
             </view>
             <view class="">
               <a>{{item.endTime}}</a>

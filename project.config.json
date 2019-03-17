@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 13,
 			"list": [
 				{
 					"id": -1,
@@ -109,6 +109,27 @@
 					"id": -1,
 					"name": "edit",
 					"pathName": "pages/edit/edit",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "Index discover",
+					"pathName": "pages/discover/discover",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "muTask",
+					"pathName": "pages/myTasks/myTasks",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "notify",
+					"pathName": "pages/notify/notify",
 					"query": "",
 					"scene": null
 				}

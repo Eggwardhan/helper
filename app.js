@@ -53,9 +53,10 @@ App({
   globalData: {
     userInfo: null,
     hasAuth: null,
-    hasRegister: true,
+    hasRegister: null,
     code: null,
     openid: "",
-    session_key: ""
+    session_key: "",
+    partid:[]
   }
 })

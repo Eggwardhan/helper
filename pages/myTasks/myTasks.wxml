@@ -1,0 +1,39 @@
+
+<view class='container' >
+  <block wx:for="{{task}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+    <view class="task-item" bindtap='goDetail' id="{{idx}}" data-id="{{item.task_id}}">
+      <view class="task-source">
+        <a class="">
+          <view class="avatar">
+            <image src="{{item.avatar_img}}"></image>
+          </view>
+          <text>{{item.user_name}}</text>
+        </a>
+        <image class='item-more' mode='aspectFit' src='/resources/more.png'></image>
+      </view>
+      <view class="task-content">
+        <view class="task" id="{{user_id}}" bindtap="bindUserTap">
+          <a class="task-link">
+            <text>{{item.task_place}}</text>
+          </a>
+        </view>
+        <view class="task-body">
+          <view bindtap="bindItemTap">
+            <text class="task-txt" aid="{{task.task_id}}">{{item.demand}}</text>
+          </view>
+          <view class="date" bindtap="bindItemTap">
+            <view class="">
+              <a>{{item.date}} </a>
+            </view>
+            <view class="">
+              <a>{{item.startTime}} -</a>
+            </view>
+            <view class="">
+              <a>{{item.endTime}}</a>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

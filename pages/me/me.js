@@ -1,26 +1,26 @@
 var app = getApp()
 Page({
   data: {
-    hasLogin: true,/* wx.canIUse('button.open-type.getUserInfo'),*/
+    hasRegister: wx.canIUse('button.open-type.getUserInfo'),
     userInfo: {},
     userListInfo: [{
       icon: '/resources/iconfont-order.png',
       text: '编辑资料',
       isunread: true,
       unreadNum: 2,
-      url: "/pages/order/order"
+      url: "/pages/edit/edit"
     }, {
       icon: '/resources/iconfont-address.png',
       text: '消息提醒',
       isunread: false,
       unreadNum: 2,
-      url: "/pages/me/address"
+      url: "/pages/notify/notify"
     },{
         icon: '/resources/iconfont-address.png',
-        text: '我的约会',
+        text: '我的自习',
         isunread: false,
         unreadNum: 0,
-        url: "/pages/me/address"
+        url: "/pages/myTasks/myTasks"
     }
     ]
   },
@@ -49,7 +49,11 @@ Page({
       }
     })
   },
-
+  register:function(){
+    wx.switchTab({
+      url: '/pages/ index/index'
+    })
+  },
   jumpUrl: function (e) {
     var url = e.currentTarget.dataset.url;
     wx.navigateTo({
