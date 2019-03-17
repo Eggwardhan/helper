@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 13,
 			"list": [
 				{
 					"id": -1,
@@ -123,6 +123,13 @@
 					"id": -1,
 					"name": "muTask",
 					"pathName": "pages/myTasks/myTasks",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "notify",
+					"pathName": "pages/notify/notify",
 					"query": "",
 					"scene": null
 				}

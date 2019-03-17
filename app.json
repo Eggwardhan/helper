@@ -8,12 +8,12 @@
     "pages/secmarket/order/order",
     "pages/secmarket/me/address",
     "pages/secmarket/me/editAddress",
-    
     "pages/discover/discover",
     "pages/me/me",
     "pages/detail/detail",
     "pages/edit/edit",
-    "pages/myTasks/myTasks"
+    "pages/myTasks/myTasks",
+    "pages/notify/notify"
   ],
   "window": {
     "backgroundTextStyle": "light",
