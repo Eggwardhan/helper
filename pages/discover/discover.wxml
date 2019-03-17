@@ -4,16 +4,12 @@
     <view class="page__bd page__bd_spacing">
       <view class="weui-btn-area">
         <view>自习预订日期</view>
-        <picker class="weui-btn" mode="date" value="{{dates}}" id='dates' start="{{dates}}" end="2022-10-10" bindchange="bindinput">
+        <picker class="weui-btn" mode="date" value="{{dates}}" id='dates'  end="2022-10-10" bindchange="bindinput">
           <button type='default'>{{dates}}</button>
         </picker>
         <view>开始时间</view>
         <picker class="weui-btn" mode="time" value="{{startTime}}" id='startTime' start="08:00" end="23:00" bindchange="bindinput">
           <button type='default'>{{startTime}}</button>
-        </picker>
-        <view>结束时间</view>
-        <picker class="weui-btn" mode="time" value="{{endTime}}" id='endTime' start="08:00" end="23:00" bindchange="bindinput">
-          <button type='default'>{{endTime}}</button>
         </picker>
         <view class="weui-label">学院</view>
         <picker id="schoolDepartment" bindchange="bindinput" value="{{departmentIndex}}" range='{{schoolDepartmentList}}'>
@@ -23,7 +19,7 @@
 
 
         <button class="weui-btn mini-btn" type="primary" size="mini" bindtap="search_task">查找</button>
-        <button class="weui-btn mini-btn" type="warn" size="mini" style="margin-left:400rpx" bindtap="searchClick">取消</button>
+        <button id ="cancel" class="weui-btn mini-btn" type="warn" size="mini" style="margin-left:400rpx" bindtap="searchClick">取消</button>
 
       </view>
     </view>

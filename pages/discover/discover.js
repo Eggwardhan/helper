@@ -17,25 +17,30 @@ Page({
 
     }],
     search_task_list: null,
-    datess:null,
+    dates:null,
     startTime:null,
     endTime:null
     ///departmentSearch:null
   },
   search_task(e){
+    console.log(typeof(this.data.dates))
+    console.log(typeof(this.data.startTime))
     wx.request({
-      url:'https://www.bupt404.cn/search_task.php',
-      methond:"POST",
+      url:'https://www.bupt404.cn/filter.php',
+      method:"POST",
+      header: { "Content-Type":"application/x-www-form-urlencoded"},
       data:{
-        search_dates:this.data.datess,
-        startTime:this.data.startTime,
-        endTime:this.data.endTime,
-        department: this.data.schoolDepartmentList[departmentIndex]
+        dates:this.data.dates,
+        startTime:this.data.startTime
       },
       success:(res)=>{
+        console.log(res)
           this.setData({
-            task:res.data.task
+            search_task_list:res.data
           })
+          if(res.data.status=="20001")
+          {
+            console.log("fail")}
       },
       fail:(res)=>{
           console.log(res)
@@ -47,6 +52,11 @@ Page({
     this.setData({
       searchActive:!this.data. searchActive
     })
+    if(e.target.id=='cancel'){
+      this.setData({
+        search_task_list:null
+      })
+    }
   },
   goDetail(e) {
     wx.navigateTo({
@@ -104,30 +114,18 @@ Page({
 
   },
 
-  /**
-   * Lifecycle function--Called when page show
-   */
   onShow: function () {
 
   },
 
-  /**
-   * Lifecycle function--Called when page hide
-   */
   onHide: function () {
 
   },
 
-  /**
-   * Lifecycle function--Called when page unload
-   */
   onUnload: function () {
 
   },
 
-  /**
-   * Page event handler function--Called when user drop down
-   */
   onPullDownRefresh: function () {
 
   },

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/secmarket/index2/index2",
     "pages/secmarket/add/add",
     "pages/secmarket/detail/detail",
@@ -7,7 +8,7 @@
     "pages/secmarket/order/order",
     "pages/secmarket/me/address",
     "pages/secmarket/me/editAddress",
-    "pages/index/index",
+    
     "pages/discover/discover",
     "pages/me/me",
     "pages/detail/detail",

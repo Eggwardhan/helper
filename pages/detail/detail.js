@@ -12,33 +12,39 @@ Page({
     endTime: '19:50'
   },
   reserve() {
-    if (task_status == 0) {
+    let task_status=this.data.task_status;
+    if (task_status == 1&&this.data.openid != wx.getStorageSync('openid')) {//预约
       wx.request({
         url: 'https://www.bupt404.cn/date???',
         method: 'GET',
-        data: { openid: wx.getStorageSync('openid') },
+        data: { openid: wx.getStorageSync('openid') ,
+                  task_id:this.data.task_id,
+                  task_status:'0'},
         success: (res) => {
           console.log(res)
+          this.setData({task_status:"0"})
           wx.showToast({
-            title: '预约成功',
+            title: '已发起预约',
             icon: 'success',
             duration: 1500,
           })
         }
       })
     }
-    else if(task_status==1){
+    else if (task_status == 1&&this.data.openid == wx.getStorageSync('openid')){//删除
       wx.request({
         url: 'https://www.bupt404.cn/date???',
         method: 'GET',
         data: { 
           openid: wx.getStorageSync('openid'),
-          task_status:0
+          task_id:this.data.task_id,
+          task_status:'2'
            },
         success: (res) => {
           console.log(res)
+          this.setData({task_status:'2'})
           wx.showToast({
-            title: '取消成功',
+            title: '删除成功',
             icon: 'success',
             duration: 1500,
           })
@@ -48,22 +54,33 @@ Page({
   this.check_status();
   },
   check_status() {
-    if (task_status == 0) {
+    let task_status=this.data.task_status;
+    if (task_status == '0'&&this.data.openid != wx.getStorageSync('openid')) {
       this.setData({
         situation: "预约"
       })
     }
-    else if (task_status == 1) {
+    else if (task_status == '0'&& this.data.openid==wx.getStorageSync('openid')){
+      this.setData({
+        situation: "删除预约"
+      })
+    }
+   /* else if (task_status == '0'&&this.data.partid==wx.getStorageSync('openid')) {
       this.setData({
         situation: "取消预约"
       })
+    }*/
+    else if (task_status == '2') {
+      this.setData({
+        situation: "已删除"
+      })
     }
-    else if (task_status == 2) {
+    else if (task_status == 3) {
       this.setData({
         situation: "已过期"
       })
     }
-    else if (task_status == 3) {
+    else if (task_status == '1'&&this.data.partid!=wx.getStorageSync('openid')) {
       this.setData({
         situation: "已组队"
       })
@@ -71,6 +88,11 @@ Page({
   },
   onLoad: function (options) {
     let that = this;
+    let task_id=options.task_id
+    this.setData({
+      task_id:task_id
+    })
+
     wx.request({
       url: 'https://www.bupt404.cn/datedetail.php',
       header: {
@@ -83,14 +105,15 @@ Page({
         this.setData({
           realname: res.data.realname,
           user_intro: res.data.user_intro,
-          //phone: res.data.phone,
-          //schoolDepartment: res.data.schoolDepartment,
+          openid:res.data.openid,
           dates: res.data.dates,
           startTime: res.data.startTime,
           endTime: res.data.endTime,
           avatarUrl: res.data.avatarUrl,
           task_place: res.data.task_place,
-          demand: res.data.demand
+          demand: res.data.demand,
+          task_status:res.data.task_status,
+          partid:res.data.partid
 
         })
         this.check_status();

@@ -38,7 +38,7 @@ Page({
         
         if (res.data.status == 10000) {
           wx.showToast({
-            title: '预约成功，请耐心等待',
+            title: '预约成功',
             icon: 'success',
             duration: 1500,
             success: () => {
@@ -52,7 +52,7 @@ Page({
         }
         else if(res.data.status==20002){
           wx.showToast({
-            title: '失败，已达上限',
+            title: '失败-已达上限',
             icon: 'warn',
             duration: 1500,
             success: () => {
@@ -68,7 +68,7 @@ Page({
       fail: (res) => {
         console.log(res.errMsg)
         wx.showToast({
-          title: '预约失败,请重新选择日期',
+          title: '预约失败',
           icon: 'warn',
           duration: 2500,
           success: () => {
@@ -193,7 +193,7 @@ Page({
   },
   saveInfo() {
     wx.request({
-      url: "https://www.bupt404.cn/posrtinfo.php",
+      url: "https://www.bupt404.cn/postinfo.php",
       header: {
         "content-type": "application/x-www-form-urlencoded"
       },
