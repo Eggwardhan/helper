@@ -2,10 +2,10 @@
   <block wx:for="{{notifies}}" wx:for-item="item" >
     <view class="block" >
       <view class="left">
-        <image src="{{item.avatarUrl}}" id="{{item.openid}}" mode="aspectFill"  bindtap='goUser'/>
+        <image src="{{item.avatarUrl}}" id="{{item.openid}}" mode="aspectFill"  bindtap='getUser'/>
       </view>
       <view class="right">
-        <view class="content"id="{{item.task_id}}" bindtap="goDetail" >
+        <view class="content" id="{{item.task_id}}" bindtap="goDetail" >
           <view>
             <text class="notify-name">{{item.realname}}</text>
           </view>
@@ -13,8 +13,8 @@
             <text class="notify-info">{{item.task_place}} - {{item.dates}}</text>
           </view>
         </view>
-        <view class="accept" bindtap='accept'>
-          <button class="weui-btn mini-btn" type="warn" size="mini">Accept</button>
+        <view class="accept" bindtap='accept' id="{{item.task_id}}" data-status="{{item.task_status}}">
+          <button class="weui-btn mini-btn" type="warn" size="mini">{{item.task_status=='0'?'Accept':""}}</button>
         </view>
       </view>
     </view>

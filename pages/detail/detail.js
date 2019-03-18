@@ -30,7 +30,7 @@ Page({
         success: (res) => {
           console.log(res)
           this.setData({
-            task_status: "4"
+            situation:"已预约"
           })
           wx.showToast({
             title: '已发起预约',
