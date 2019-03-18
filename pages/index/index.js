@@ -226,9 +226,7 @@ Page({
               }, 1500)
             }
           })
-          /*wx.redirectTo({
-            url: "/pages/index/index"
-          })*/
+ 
         }
       },
       fail:(res)=>{

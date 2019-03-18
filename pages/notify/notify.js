@@ -1,5 +1,6 @@
 Page({
   data: {
+    noMsg:false,
     notifies: [{
       openid:"OOxxsssooiii",
       task_id: '1',
@@ -16,32 +17,43 @@ Page({
       dates: '2019-02-33'
     }]
   },
+
   getUser(e) {
     wx.navigateTo({
       url: '/pages/user/user?openid='+e.currentTarget.id
     })
   },
   accept(e) {
-    if (e.currentTarget.task_status == '0') {
+
       wx.request({
-        url: 'https://www.bupt404.cn/handshake.php',
+        url: 'https://www.bupt404.cn/accept.php',
         method: "GET",
         header: {
           "content-type": "application/x-www-form-urlencoded"
         },
         data: {
-          openid: wx.getStorageSync('openid'),
-          task_id: e.currentTarget.id,
+          openid: e.currentTarget.id,
+          task_id: e.currentTarget.dataset.task_id,
           task_status: '0'
         },
         success:(res)=>{
             console.log(res)
+          wx.showToast({
+            title: '已接受',
+            icon: 'success',
+            duration: 1500,
+            success: () => {
+                wx.navigateTo({
+                  url: '/pages/me/me',
+                })
+            }
+          })
         },
         fail:(res)=>{
           console.log(res)
         }
       })
-    }
+    
   },
   goDetail(e) {
     wx.navigateTo({
@@ -55,6 +67,9 @@ Page({
         data:{openid:wx.getStorageSync('openid')},
         success:(res)=>{
           console.log(res)
+          if (res.data.status == '20001') {
+            this.setData({ noMsg: true })
+          }
           this.setData({
             notifies:res.data
           })

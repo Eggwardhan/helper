@@ -6,8 +6,8 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    if(!wx.getStorageSync('openid')){
     wx.checkSession({
-
       fail: function (res) {
         // 登录
         wx.login({
@@ -47,7 +47,7 @@ App({
         })
       }
     })
-
+  }
 
   },
   globalData: {
