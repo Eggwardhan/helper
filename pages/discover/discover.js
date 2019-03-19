@@ -128,18 +128,11 @@ Page({
 
   onPullDownRefresh: function () {
 
+      wx.showNavigationBarLoading() //在标题栏中显示加载
+wx.stopPullDownRefresh()
+    
   },
 
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
   onShareAppMessage: function () {
 
   }

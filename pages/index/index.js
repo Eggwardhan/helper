@@ -212,8 +212,6 @@ Page({
         this.setData({
           hasRegister:true
         })
-        console.log(res)
-
       if (res.data=10000) {
 
           wx.showToast({
@@ -228,9 +226,7 @@ Page({
               }, 1500)
             }
           })
-          /*wx.redirectTo({
-            url: "/pages/index/index"
-          })*/
+ 
         }
       },
       fail:(res)=>{
@@ -300,15 +296,13 @@ Page({
           wx.getUserInfo({
             success: res => {
               console.log(res.userInfo)
-              wx.setStorageSync(userInfo, res.userInfo)
+              wx.setStorageSync('userInfo', res.userInfo)
 
             }
           })
         }
       }
     })
-    console.log(this.data.hasAuth)
-    console.log(this.data.hasRegister)
     /*console.log(app.globalData.hasAuth)
 
     this.setData({
