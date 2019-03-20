@@ -34,7 +34,8 @@ Page({
         data: {
           openid: e.currentTarget.id,
           task_id: e.currentTarget.dataset.task_id,
-          task_status: '0'
+          task_status: '0',
+          choice:"accept"
         },
         success:(res)=>{
             console.log(res)

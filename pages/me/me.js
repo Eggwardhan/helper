@@ -21,6 +21,20 @@ Page({
         isunread: false,
         unreadNum: 0,
         url: "/pages/myTasks/myTasks"
+    },
+    {
+      icon: '/resources/iconfont-address.png',
+      text: '问题反馈',
+      isunread: false,
+      unreadNum: 0,
+      url: "/pages/feedback/feedback"
+    },
+    {
+      icon: '/resources/iconfont-address.png',
+      text: '关于我们',
+      isunread: false,
+      unreadNum: 0,
+      url: "/pages/about/about"
     }
     ]
   },

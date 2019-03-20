@@ -206,7 +206,8 @@ Page({
         phone: this.data.phone,
         schoolDepartment: this.data.schoolDepartment,
         gender: this.data.gender,
-        avatarUrl: wx.getStorageSync("userInfo").avatarUrl
+        avatarUrl: wx.getStorageSync("userInfo").avatarUrl,
+        user_name: wx.getStorageSync("userInfo").nickName
       },
 
       success: res => {

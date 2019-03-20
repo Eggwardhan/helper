@@ -14,7 +14,9 @@
     "pages/secmarket/me/me",
     "pages/secmarket/order/order",
     "pages/secmarket/me/address",
-    "pages/secmarket/me/editAddress"
+    "pages/secmarket/me/editAddress",
+    "pages/about/about",
+    "pages/feedback/feedback"
   ],
   "window": {
     "backgroundTextStyle": "light",
