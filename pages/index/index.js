@@ -17,13 +17,15 @@ Page({
     startTime: null,
     endTime: null,
     demand: null,
-    registerInfo:null
+    registerInfo: null
   },
   saveDate(e) {
     wx.request({
       url: 'https://www.bupt404.cn/order.php',
       method: "POST",
-      header: { "content-type": "application/x-www-form-urlencoded"},
+      header: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
       data: {
         openid: wx.getStorageSync('openid'),
         task_place: this.data.place,
@@ -34,9 +36,9 @@ Page({
       },
       success: (res) => {
         console.log(res)
-        let task_id=res.data.task_id
-        
-        if (res.data.status == 10000) {
+        let task_id = res.data.task_id
+
+        if (res.data.status == 10000 && res.data.task_id != 0) {
           wx.showToast({
             title: '预约成功',
             icon: 'success',
@@ -44,13 +46,12 @@ Page({
             success: () => {
               setTimeout(() => {
                 wx.navigateTo({
-                  url: '/pages/detail/detail?task_id='+task_id,
+                  url: '/pages/detail/detail?task_id=' + task_id,
                 });
               }, 1500)
             }
           })
-        }
-        else if(res.data.status==20002){
+        } else if (res.data.status == 20002) {
           wx.showToast({
             title: '失败-已达上限',
             icon: 'warn',
@@ -197,6 +198,7 @@ Page({
       header: {
         "content-type": "application/x-www-form-urlencoded"
       },
+      method: "POST",
       data: {
         openid: wx.getStorageSync('openid'),
         realname: this.data.name,
@@ -204,17 +206,16 @@ Page({
         phone: this.data.phone,
         schoolDepartment: this.data.schoolDepartment,
         gender: this.data.gender,
-        avatarUrl:wx.getStorageSync("userinfo").avatarUrl
+        avatarUrl: wx.getStorageSync("userinfo").avatarUrl
       },
-      method: "POST",
-      
-      success: res => {
-        this.setData({
-          hasRegister:true
-        })
-        wx.setStorageSync('hasRegister', this.data.hasRegister)
-      if (res.data=10000) {
 
+      success: res => {
+
+        if (res.data = 10000) {
+          this.setData({
+            hasRegister: true
+          })
+          wx.setStorageSync('hasRegister', this.data.hasRegister)
           wx.showToast({
             title: '认证成功',
             icon: 'success',
@@ -227,10 +228,10 @@ Page({
               }, 1500)
             }
           })
- 
+
         }
       },
-      fail:(res)=>{
+      fail: (res) => {
         console.log(res)
       }
     })
@@ -247,7 +248,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
 
     var time = util.formatTime(new Date());
@@ -270,19 +271,20 @@ Page({
         url: 'https://www.bupt404.cn/checkregister.php',
         method: 'GET',
         data: {
-          openid:wx.getStorageSync('openid')
+          openid: wx.getStorageSync('openid')
         },
         header: {},
         success: (res) => {
           console.log(res)
-          if(res.data.status=="10000")
-          wx.setStorageSync('hasRegister', true)
-          this.setData({
-            hasRegister: true,
-           // registerInfo: res.data.registerInfo
-          })
+          if (res.data.status == "10000") {
+            wx.setStorageSync('hasRegister', true)
+            this.setData({
+              hasRegister: true
+              // registerInfo: res.data.registerInfo
+            })
+          }
         },
-        fail:(res)=>{
+        fail: (res) => {
           console.log(res)
         }
       })
@@ -319,49 +321,49 @@ Page({
   /**
    * Lifecycle function--Called when page is initially rendered
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * Lifecycle function--Called when page show
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * Lifecycle function--Called when page hide
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * Lifecycle function--Called when page unload
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * Page event handler function--Called when user drop down
    */
-  onPullDownRefresh: function () {
-      wx.stopPullDownRefresh()
+  onPullDownRefresh: function() {
+    wx.stopPullDownRefresh()
   },
 
   /**
    * Called when page reach bottom
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * Called when user click on the top right corner to share
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
