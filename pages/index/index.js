@@ -206,7 +206,7 @@ Page({
         phone: this.data.phone,
         schoolDepartment: this.data.schoolDepartment,
         gender: this.data.gender,
-        avatarUrl: wx.getStorageSync("userinfo").avatarUrl
+        avatarUrl: wx.getStorageSync("userInfo").avatarUrl
       },
 
       success: res => {
@@ -241,6 +241,11 @@ Page({
     this.setData({
       hasAuth: true
     })
+    wx.getUserInfo({
+      success: res => {
+        wx.setStorageSync('userInfo', res.userInfo)
+      }
+    })
     this.getSaveBtn();
 
   },
@@ -250,6 +255,45 @@ Page({
    */
   onLoad: function(options) {
 
+    if (!wx.getStorageSync('userInfo') || !wx.getStorageSync('openid')) {
+      // 登录
+      wx.login({
+        success: res => {
+          var code = res.code;
+          if (code) {
+            wx.request({
+              url: "https://www.bupt404.cn/login.php",
+              data: {
+                code: code
+              },
+              header: {
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              method: 'POST',
+              success: function (e) {
+                console.log(e)
+                console.log(e.data)
+                let openid = e.data[0]['openid']
+                let session_key = e.data[0]['session_key']
+                wx.setStorageSync('openid', openid);
+                wx.setStorageSync('session_key', session_key)
+
+              }
+            })
+            wx.getUserInfo({
+              success: function (res) {
+                userInfo
+                wx.setStorageSync('userInfo', res.userInfo)
+              }
+            })
+          } else {
+            console.log('fail to get login !' + res.errMsg)
+          }
+        }
+      })
+    }
+
+    //temp  above
 
     var time = util.formatTime(new Date());
     var timee = util.formatTimeX(new Date());
@@ -296,7 +340,6 @@ Page({
           this.setData({
             hasAuth: true
           })
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
               console.log(res.userInfo)

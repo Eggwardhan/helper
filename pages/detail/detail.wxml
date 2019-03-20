@@ -32,7 +32,7 @@
     <view class="operation-wrp flex-item">
       <view class="operation flex-wrp flex-tab">
 
-        <view class="operation-btn flex-item">
+        <view class="operation-btn flex-item" bindtap='comment'>
           <image src="../../resources/comment.png"></image>
           <text>留言</text>
         </view>

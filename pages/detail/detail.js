@@ -75,6 +75,11 @@ Page({
                   title: '删除成功',
                   icon: 'success',
                   duration: 1500,
+                  success:(res)=>{
+                    wx.switchTab({
+                      url: '/pages/discover/discover',
+                    })
+                  }
                 })
               }
             })
