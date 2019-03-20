@@ -36,8 +36,8 @@
           <image src="../../resources/comment.png"></image>
           <text>留言</text>
         </view>
-        <view class="operation-btn flex-item" wx:if="{{}}">
-          <image src="../../resources/comment.png"></image>
+        <view class="operation-btn flex-item" wx:if="{{situation=='预约中'}}" bindtap='reserve'>
+          <image src="../../resources/trash.png"></image>
           <text>删除预约</text>
         </view>
 

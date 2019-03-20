@@ -212,6 +212,7 @@ Page({
         this.setData({
           hasRegister:true
         })
+        wx.setStorageSync('hasRegister', this.data.hasRegister)
       if (res.data=10000) {
 
           wx.showToast({
@@ -275,6 +276,7 @@ Page({
         success: (res) => {
           console.log(res)
           if(res.data.status=="10000")
+          wx.setStorageSync('hasRegister', true)
           this.setData({
             hasRegister: true,
            // registerInfo: res.data.registerInfo

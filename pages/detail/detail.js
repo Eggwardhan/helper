@@ -18,7 +18,17 @@ Page({
   },
   reserve() { //点击按钮事件
     let task_status = this.data.task_status;
-    if (task_status == '0' && this.data.openid != wx.getStorageSync('openid')&&!this.data.hasPart) { //预约
+    if (!wx.getStorageSync('hasRegister')) {
+      wx.showToast({
+        title: '未注册',
+        icon: 'warn',
+        success: () => {
+          wx.switchTab({
+            url: '/pages/index/index',
+          })
+        }
+      })
+    } else if (task_status == '0' && this.data.openid != wx.getStorageSync('openid') && !this.data.hasPart) { //预约
       wx.request({
         url: 'https://www.bupt404.cn/handshake.php',
         method: 'GET',
@@ -30,7 +40,7 @@ Page({
         success: (res) => {
           console.log(res)
           this.setData({
-            situation:"已预约"
+            situation: "已预约"
           })
           wx.showToast({
             title: '已发起预约',
@@ -43,24 +53,34 @@ Page({
         }
       })
     } else if (task_status == '0' && this.data.openid == wx.getStorageSync('openid')) { //删除
-      wx.request({
-        url: 'https://www.bupt404.cn/handshake.php',
-        method: 'GET',
-        data: {
-          openid: wx.getStorageSync('openid'),
-          task_id: this.data.task_id,
-          task_status: '2'
-        },
+      wx.showModal({
+        title: 'warning',
+        content: '确认删除此预约吗？',
         success: (res) => {
-          console.log(res)
-          this.setData({
-            task_status: '2'
-          })
-          wx.showToast({
-            title: '删除成功',
-            icon: 'success',
-            duration: 1500,
-          })
+          if (res.confirm) {
+            wx.request({
+              url: 'https://www.bupt404.cn/handshake.php',
+              method: 'GET',
+              data: {
+                openid: wx.getStorageSync('openid'),
+                task_id: this.data.task_id,
+                task_status: '2'
+              },
+              success: (res) => {
+                console.log(res)
+                this.setData({
+                  task_status: '2'
+                })
+                wx.showToast({
+                  title: '删除成功',
+                  icon: 'success',
+                  duration: 1500,
+                })
+              }
+            })
+          } else {
+            return
+          }
         }
       })
     } else {
@@ -73,7 +93,7 @@ Page({
   check_status() {
     let that = this;
     let task_status = this.data.task_status;
-    if (task_status == '0' && that.data.openid != wx.getStorageSync('openid')&& that.data.hasPart == true) {
+    if (task_status == '0' && that.data.openid != wx.getStorageSync('openid') && that.data.hasPart == true) {
       console.log("already")
       this.setData({
         situation: "已预约"
@@ -84,7 +104,7 @@ Page({
       })
     } else if (task_status == '0' && that.data.openid == wx.getStorageSync('openid')) {
       this.setData({
-        situation: "删除预约"
+        situation: "预约中"
       })
     }
     /* else if (task_status == '0'&&this.data.partid==wx.getStorageSync('openid')) {

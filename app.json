@@ -1,20 +1,20 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/secmarket/index2/index2",
-    "pages/secmarket/add/add",
-    "pages/secmarket/detail/detail",
-    "pages/secmarket/me/me",
-    "pages/secmarket/order/order",
-    "pages/secmarket/me/address",
-    "pages/secmarket/me/editAddress",
     "pages/discover/discover",
     "pages/me/me",
     "pages/detail/detail",
     "pages/edit/edit",
     "pages/myTasks/myTasks",
     "pages/notify/notify",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/secmarket/index2/index2",
+    "pages/secmarket/add/add",
+    "pages/secmarket/detail/detail",
+    "pages/secmarket/me/me",
+    "pages/secmarket/order/order",
+    "pages/secmarket/me/address",
+    "pages/secmarket/me/editAddress"
   ],
   "window": {
     "backgroundTextStyle": "light",
