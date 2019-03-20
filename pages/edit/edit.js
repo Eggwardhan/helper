@@ -125,7 +125,7 @@ Page({
                 duration: 1500,
                 success: () => {
                   setTimeout(() => {
-                    wx.navigateTo({
+                    wx.switchTab({
                       url: '/pages/me/me',
                     });
                   }, 1500)

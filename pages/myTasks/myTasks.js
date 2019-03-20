@@ -69,7 +69,21 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-
+    wx.request({
+      url: "https://www.bupt404.cn/mydates.php",
+      method: "GET",
+      header: { "Content-Type": "json" },
+      data: {
+        openid: wx.getStorageSync("openid")
+      },
+      success: (res) => {
+        this.setData({
+          task: res.data
+        })
+        console.log(this.data.task)
+      }
+    })
+    wx.stopPullDownRefresh()
   },
 
   /**
