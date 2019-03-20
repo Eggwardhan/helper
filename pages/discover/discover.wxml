@@ -19,7 +19,7 @@
 
 
         <button class="weui-btn mini-btn" type="primary" size="mini" bindtap="search_task">查找</button>
-        <button id ="cancel" class="weui-btn mini-btn" type="warn" size="mini" style="margin-right:100rpx" bindtap="searchClick">取消</button>
+        <button id ="cancel" class="weui-btn mini-btn" type="warn" size="mini" style="margin-left:300rpx" bindtap="searchClick">取消</button>
 
       </view>
     </view>

@@ -28,7 +28,15 @@ Page({
           })
         }
       })
-    } else if (task_status == '0' && this.data.openid != wx.getStorageSync('openid') && !this.data.hasPart) { //预约
+    } 
+    else if (task_status == '0' && this.data.openid != wx.getStorageSync('openid') &&this.data.hasPart){
+      wx.showToast({
+        title: '您已预约，请耐心等待！',
+        icon: 'none',
+        duration: 2000//持续的时间
+
+      })
+    }else if (task_status == '0' && this.data.openid != wx.getStorageSync('openid') && !this.data.hasPart) { //预约
       wx.request({
         url: 'https://www.bupt404.cn/handshake.php',
         method: 'GET',
@@ -40,7 +48,8 @@ Page({
         success: (res) => {
           console.log(res)
           this.setData({
-            situation: "已预约"
+            situation: "已预约",
+            hasPart:true
           })
           wx.showToast({
             title: '已发起预约',
@@ -147,6 +156,16 @@ Page({
       i = i + 1;
     }
   },
+  comment(){
+    wx.showToast({
+
+      title: '评论留言功能尚在开发当中',
+
+      icon: 'none',
+
+      duration: 2000
+
+    })},
   onLoad: function(options) {
     let that = this;
     let task_id = options.task_id
@@ -182,6 +201,7 @@ Page({
       }
     })
     let fuck = wx.getStorageSync('task')
+    console.log(fuck)
     //  console.log(fuck.partid)
     this.check_part(fuck.partid);
   },
