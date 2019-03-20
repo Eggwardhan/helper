@@ -16,7 +16,7 @@ Page({
     date: null,
     startTime: null,
     endTime: null,
-    demand: null,
+    demand: "  0 . 0 这个小伙伴要求不多哦，大家快来约TA吧～",
     registerInfo: null
   },
   saveDate(e) {
