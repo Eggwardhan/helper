@@ -5,6 +5,7 @@
     font-size: 14rpx;
     background: #F0F4F3;
     color: #000;
+     background: #ffffff;
 }
 
 .information {
@@ -159,4 +160,9 @@
 .flex-item{
   flex-grow: 1;
   text-align: center;
+}
+.mark{
+  display: flex;
+   background: #ffffff;
+   margin-top: 40rpx;
 }

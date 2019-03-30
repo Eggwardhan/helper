@@ -1,2 +1,6 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+
+<text>我的头像
+ 简介
+ 学号
+ 分数</text>

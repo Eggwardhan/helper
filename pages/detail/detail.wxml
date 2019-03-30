@@ -21,6 +21,13 @@
   <view class="task-content">
     <text>{{demand}}</text>
   </view>
+  <view  wx:if="{{task_status=='4'}}" class="">
+  <view class="task-content">请对您的小伙伴进行评价</view>
+  <multiple-rate class="mark"  rate="5" bindchange="mark" id="mark1">守时程度</multiple-rate>
+  <multiple-rate  class="mark" rate="5" bindchange="mark" id="mark2" >专心程度</multiple-rate>
+  <multiple-rate  class="mark" rate="5" bindchange="mark" id="mark3">学习态度</multiple-rate>
+<button bindtap="evaluate">评价</button>
+  </view>
 
   <view class="task-footer flex-wrp">
     <view class="good flex-item" bindtap='reserve'>

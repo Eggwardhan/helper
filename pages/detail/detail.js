@@ -1,5 +1,6 @@
 // pages/detail/detail.js
 var app = getApp();
+//var getm1=this.selectComponent('#mark1');
 Page({
   data: {
     hasPart: false,
@@ -8,14 +9,49 @@ Page({
     realname: 'eggwardhan',
     user_intro: '一个不会pop的dj不是好程序员',
     task_place: '代码全不对',
-    demand: '如果你看到这段话说明程序出Bug了',
+    demand: '如果你看到这段话说明：a任务丢失了. b程序出Bug了.',
     dates: '2019-9-9',
     startTime: '10:50',
     endTime: '19:50',
     partid: [],
-    task_status: null,
-    task: [{}]
+    task_status: '4',
+    task: [{}],
+
   },
+
+  evaluate: (e) => {
+    if (wx.getStorageSync("openid") == this.data.partid) {
+      wx.request({
+        url: "https://www.bupt404.cn/mark.php",
+        header: {},
+        method: "POST",
+        data: {
+          "task_id": this.data.task_id,
+          "partid": this.data.partid,
+          "p_punctual_mark": wx.getStorageSync("mark1"),
+          "p_focus_mark": wx.getStorageSync("mark2"),
+          "p_attitude_mark": wx.getStorageSync("mark3")
+        }
+      })
+    }
+  },
+  mark: (event) => { //评分
+    //console.log(event.detail.value)
+    var tmp = event.detail.rate;
+    switch (event.currentTarget.id) {
+      case "mark1":
+        wx.setStorageSync("mark1", tmp)
+        break;
+      case "mark2":
+        wx.setStorageSync("mark2", tmp)
+        break;
+      case "mark3":
+        wx.setStorageSync("mark3", tmp)
+        break;
+    }
+
+  },
+
   reserve() { //点击按钮事件
     let task_status = this.data.task_status;
     if (!wx.getStorageSync('hasRegister')) {
@@ -28,15 +64,15 @@ Page({
           })
         }
       })
-    } 
-    else if (task_status == '0' && this.data.openid != wx.getStorageSync('openid') &&this.data.hasPart){
+    }
+    else if (task_status == '0' && this.data.openid != wx.getStorageSync('openid') && this.data.hasPart) {
       wx.showToast({
         title: '您已预约，请耐心等待！',
         icon: 'none',
         duration: 2000//持续的时间
 
       })
-    }else if (task_status == '0' && this.data.openid != wx.getStorageSync('openid') && !this.data.hasPart) { //预约
+    } else if (task_status == '0' && this.data.openid != wx.getStorageSync('openid') && !this.data.hasPart) { //预约
       wx.request({
         url: 'https://www.bupt404.cn/handshake.php',
         method: 'GET',
@@ -49,7 +85,7 @@ Page({
           console.log(res)
           this.setData({
             situation: "已预约",
-            hasPart:true
+            hasPart: true
           })
           wx.showToast({
             title: '已发起预约',
@@ -84,7 +120,7 @@ Page({
                   title: '删除成功',
                   icon: 'success',
                   duration: 1500,
-                  success:(res)=>{
+                  success: (res) => {
                     wx.switchTab({
                       url: '/pages/discover/discover',
                     })
@@ -115,6 +151,11 @@ Page({
     } else if (task_status == '0' && that.data.openid != wx.getStorageSync('openid')) {
       this.setData({
         situation: "预约"
+      })
+    }
+    else if (task_status == "4") {
+      this.setData({
+        situation: "已完成"
       })
     } else if (task_status == '0' && that.data.openid == wx.getStorageSync('openid')) {
       this.setData({
@@ -156,7 +197,7 @@ Page({
       i = i + 1;
     }
   },
-  comment(){
+  comment() {
     wx.showToast({
 
       title: '评论留言功能尚在开发当中',
@@ -165,8 +206,10 @@ Page({
 
       duration: 2000
 
-    })},
-  onLoad: function(options) {
+    })
+  },
+  onLoad: function (options) {
+
     let that = this;
     let task_id = options.task_id
     this.setData({
@@ -207,16 +250,16 @@ Page({
   },
 
 
-  onReady: function() {
+  onReady: function () {
 
   },
 
-  onShow: function() {
+  onShow: function () {
 
   },
 
 
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 

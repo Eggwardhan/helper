@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "multiple-rate":"/components/multiple-rate/multiple-rate"
+
+  }
 }

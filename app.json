@@ -1,4 +1,8 @@
+
 {
+  "plugins":{
+    
+  },
   "pages": [
     "pages/index/index",
     "pages/discover/discover",
