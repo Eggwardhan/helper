@@ -1,4 +1,4 @@
-var app = getApp()
+var app = getApp();
 Page({
   data: {
     hasRegister: wx.canIUse('button.open-type.getUserInfo'),
@@ -6,14 +6,14 @@ Page({
     userListInfo: [{
       icon: '/resources/iconfont-order.png',
       text: '编辑资料',
-      isunread: true,
-      unreadNum: 2,
+      isunread: false,
+      unreadNum: 0,
       url: "/pages/edit/edit"
     }, {
       icon: '/resources/iconfont-address.png',
       text: '消息提醒',
       isunread: false,
-      unreadNum: 2,
+      unreadNum: 1,
       url: "/pages/notify/notify"
     },{
         icon: '/resources/iconfont-address.png',
@@ -40,7 +40,13 @@ Page({
   },
 
   onLoad: function () {
+
     var that = this;
+    if(app.globalData.isunread){
+      that.setData({
+       ' userListInfo[1].isunread': true
+      })
+    }
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {

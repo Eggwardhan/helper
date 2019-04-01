@@ -47,6 +47,7 @@ App({
     code: null,
     openid: "",
     session_key: "",
-    partid: []
+    partid: [],
+    isunread:false
   }
 })

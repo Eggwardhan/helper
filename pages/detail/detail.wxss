@@ -166,3 +166,15 @@
    background: #ffffff;
    margin-top: 40rpx;
 }
+.evaluate-area{
+  position: fixed;
+  bottom:120rpx;
+  padding: 20rpx;
+
+  margin-top:50rpx;
+}
+.evaluate-title{
+  font-size:32rpx;
+  align-content: center;
+
+}

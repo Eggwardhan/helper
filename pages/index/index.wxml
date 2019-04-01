@@ -35,7 +35,7 @@
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">
           <view class="weui-cell__bd">
-            <textarea class="weui-textarea" id="demand" bindinput="bindinput" maxlength='200' placeholder="请输入具体要求" style="height: 3.3em" auto-focus />
+            <textarea class="weui-textarea" id="demand" bindinput="bindinput" maxlength='200' placeholder="请描述您理想的自习伙伴的学科特长，守时要求等 相关信息" style="height: 3.3em" auto-focus />
             <view class="weui-textarea-counter">{{wordNum|0}}/200</view>
           </view>
         </view>

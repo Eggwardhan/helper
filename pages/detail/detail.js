@@ -16,21 +16,76 @@ Page({
     partid: [],
     task_status: '4',
     task: [{}],
-
+    evaluated: false
   },
 
-  evaluate: (e) => {
-    if (wx.getStorageSync("openid") == this.data.partid) {
+  evaluate() {
+    let partid = this.data.partid
+    console.log(partid)
+    var that = this;
+    if (wx.getStorageSync("openid") == this.data.openid) {
       wx.request({
         url: "https://www.bupt404.cn/mark.php",
-        header: {},
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         method: "POST",
         data: {
-          "task_id": this.data.task_id,
-          "partid": this.data.partid,
-          "p_punctual_mark": wx.getStorageSync("mark1"),
-          "p_focus_mark": wx.getStorageSync("mark2"),
-          "p_attitude_mark": wx.getStorageSync("mark3")
+          task_id: that.data.task_id,
+          partid: that.data.partid,
+          p_punctual_mark: wx.getStorageSync("mark1"),
+          p_focus_mark: wx.getStorageSync("mark2"),
+          p_attitude_mark: wx.getStorageSync("mark3")
+        },
+        success: (e) => {
+          console.log(e)
+          this.setData({
+            evaluated: true
+          })
+          wx.showToast({
+            title: '您已评价！',
+            icon: 'success',
+            duration: 2000
+          })
+        },
+        fail: (err) => {
+          console.log(err)
+          wx.showToast({
+            title: '评价失败！',
+            icon: 'warn',
+            duration: 2000
+          })
+        }
+      })
+      //if (wx.getStorageSync("openid") == this.data.partid) 
+    } else if(wx.getStorageSync("openid") == this.data.partid)  {
+      wx.request({
+        url: "https://www.bupt404.cn/mark.php",
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
+        method: "POST",
+        data: {
+          task_id: that.data.task_id,
+          openid: that.data.openid,
+          o_punctual_mark: wx.getStorageSync("mark1"),
+          o_focus_mark: wx.getStorageSync("mark2"),
+          o_attitude_mark: wx.getStorageSync("mark3")
+        },
+        success: (e) => {
+          console.log(e)
+          this.setData({
+            evaluated: true
+          })
+          wx.showToast({
+            title: '您已评价！',
+            icon: 'success',
+            duration: 2000
+          })
+        },
+        fail: (err) => {
+          console.log(err)
+          wx.showToast({
+            title: '评价失败！',
+            icon: 'warn',
+            duration: 2000
+          })
         }
       })
     }
@@ -175,7 +230,8 @@ Page({
       this.setData({
         situation: "已过期"
       })
-    } else if (task_status == '1' && that.data.hasPart) {
+      // } else if (task_status == '1' && that.data.hasPart) {
+    } else if (task_status == '1') {
       this.setData({
         situation: "进行中"
       })
@@ -191,7 +247,7 @@ Page({
         this.setData({
           hasPart: true
         })
-        console.log(this.data.hasPart)
+       // console.log(this.data.hasPart)
         break;
       }
       i = i + 1;
@@ -238,15 +294,15 @@ Page({
           task_place: res.data.task_place,
           demand: res.data.demand,
           task_status: res.data.task_status,
-          partid: JSON.stringify(res.data.partid)
+          partid: res.data.partid
         })
         this.check_status();
       }
     })
     let fuck = wx.getStorageSync('task')
     console.log(fuck)
-    //  console.log(fuck.partid)
     this.check_part(fuck.partid);
+    //partid: JSON.stringify(res.data.partid)
   },
 
 

@@ -5,7 +5,7 @@ var db = require('../../utils/db.js')
 Page({
   data: {
     hasAuth: false,
-    hasRegister: false,
+    hasRegister: false,   
     postDisable: true,
     schoolDepartmentList: ['信息与通信工程学院', '计算机学院', '自动化学院', '软件学院', '数字媒体与设计艺术学院', '现代邮政学院', '继续教育学院', '国际学院', '网络教育学院', '电子工程学院', '理学院', '经济管理学院', '公共管理学院', '人文学院', '马克思主义学院', '网络空间安全学院', '光电信息学院', '民族教育学院', '网络技术研究院', '叶培大创新学院'],
     departmentIndex: 0,
@@ -295,7 +295,26 @@ Page({
     }
 
     //temp  above
+    
+    wx.request({
+      url: 'https://www.bupt404.cn/redpoint.php',
+      header:{},
+      method:"GET",
+      data:{
+          openid:wx.getStorageSync("openid")
+      },
+      success:(res)=>{
+        //console.log(res.data)
+        if(res){
+        app.globalData.isunread=true
+        }
+      },
+      fail:(res)=>{
+        console.log(res)
+      }
+    })
 
+    //formatTime
     var time = util.formatTime(new Date());
     var timee = util.formatTimeX(new Date());
     console.log(time)

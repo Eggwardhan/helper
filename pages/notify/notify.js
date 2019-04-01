@@ -1,3 +1,4 @@
+var app=getApp();
 Page({
   data: {
     noMsg:false,
@@ -24,7 +25,6 @@ Page({
     })
   },
   accept(e) {
-
       wx.request({
         url: 'https://www.bupt404.cn/accept.php',
         method: "GET",
@@ -62,6 +62,7 @@ Page({
     })
   },
   onLoad: function(options) {
+     app.globalData.isunread=false;
       wx.request({
         url: 'https://www.bupt404.cn/permission.php',
         method:"GET",
