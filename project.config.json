@@ -9,10 +9,11 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.2",
+	"libVersion": "2.6.4",
 	"appid": "wxa7932b3ba0473289",
 	"projectname": "secmarket",
 	"debugOptions": {
@@ -68,7 +69,7 @@
 					"id": 4,
 					"name": "detail",
 					"pathName": "pages/detail/detail",
-					"query": "taskid=1",
+					"query": "task_id=14",
 					"scene": null
 				},
 				{
@@ -103,20 +104,6 @@
 					"id": -1,
 					"name": "discover",
 					"pathName": "pages/discover/discover",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "edit",
-					"pathName": "pages/edit/edit",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "muTask",
-					"pathName": "pages/myTasks/myTasks",
 					"query": "",
 					"scene": null
 				},

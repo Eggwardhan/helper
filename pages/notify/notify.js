@@ -63,7 +63,7 @@ Page({
   },
   onLoad: function(options) {
      app.globalData.isunread=false;
-      wx.request({
+      wx.request({                //？？？
         url: 'https://www.bupt404.cn/permission.php',
         method:"GET",
         data:{openid:wx.getStorageSync('openid')},

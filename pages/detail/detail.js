@@ -14,26 +14,31 @@ Page({
     startTime: '10:50',
     endTime: '19:50',
     partid: [],
+    openid:"",
     task_status: '4',
     task: [{}],
+    mark_status:null,
     evaluated: false
   },
 
   evaluate() {
-    let partid = this.data.partid
+    let partid = this.data.partid[0]
     console.log(partid)
+    let mark1=wx.getStorageSync("mark1")
+    let mark2 = wx.getStorageSync("mark2")
+    let mark3 = wx.getStorageSync("mark3")
     var that = this;
-    if (wx.getStorageSync("openid") == this.data.openid) {
+    if (wx.getStorageSync("openid") == this.data.openid) {     //evaluate parter
       wx.request({
         url: "https://www.bupt404.cn/mark.php",
         header: { "Content-Type": "application/x-www-form-urlencoded" },
         method: "POST",
         data: {
           task_id: that.data.task_id,
-          partid: that.data.partid,
-          p_punctual_mark: wx.getStorageSync("mark1"),
-          p_focus_mark: wx.getStorageSync("mark2"),
-          p_attitude_mark: wx.getStorageSync("mark3")
+          partid: partid,
+          p_punctual_mark: mark1,
+          p_focus_mark: mark2,
+          p_attitude_mark: mark3
         },
         success: (e) => {
           console.log(e)
@@ -55,18 +60,17 @@ Page({
           })
         }
       })
-      //if (wx.getStorageSync("openid") == this.data.partid) 
-    } else if(wx.getStorageSync("openid") == this.data.partid)  {
+    } else if(wx.getStorageSync("openid") == partid)  {
       wx.request({
         url: "https://www.bupt404.cn/mark.php",
-        header: { "Content-Type": "application/x-www-form-urlencoded" },
         method: "POST",
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         data: {
-          task_id: that.data.task_id,
-          openid: that.data.openid,
-          o_punctual_mark: wx.getStorageSync("mark1"),
-          o_focus_mark: wx.getStorageSync("mark2"),
-          o_attitude_mark: wx.getStorageSync("mark3")
+          task_id: wx.getStorageSync("task").task_id,
+          openid: wx.getStorageSync("task").openid,
+          o_punctual_mark: mark1,
+          o_focus_mark: mark2,
+          o_attitude_mark: mark3
         },
         success: (e) => {
           console.log(e)
@@ -89,6 +93,7 @@ Page({
         }
       })
     }
+
   },
   mark: (event) => { //评分
     //console.log(event.detail.value)
@@ -195,7 +200,7 @@ Page({
     this.check_status();
   },
 
-  check_status() {
+  check_status() {    //check task\mark status
     let that = this;
     let task_status = this.data.task_status;
     if (task_status == '0' && that.data.openid != wx.getStorageSync('openid') && that.data.hasPart == true) {
@@ -209,9 +214,22 @@ Page({
       })
     }
     else if (task_status == "4") {
-      this.setData({
-        situation: "已完成"
-      })
+      if ((that.data.mark_status == 40003 && that.data.hasPart == true)||(that.data.mark_status == 40001 && that.data.openid == wx.getStorageSync('openid')) || (that.data.mark_status == 40002 && that.data.openid != wx.getStorageSync('openid') && that.data.hasPart == true)) {
+        this.setData({
+          situation: "已完成",
+          evaluated:false
+        })
+      } else if (that.data.mark_status == 40004||that.data.mark_status==40005){
+        this.setData({
+          situation: "已完成",
+          evaluated: true
+        })
+        }else{
+        this.setData({
+          situation: "已完成"
+        })
+        }
+    
     } else if (task_status == '0' && that.data.openid == wx.getStorageSync('openid')) {
       this.setData({
         situation: "预约中"
@@ -240,7 +258,7 @@ Page({
     }
   },
   check_part(e) {
-    console.log(e)
+    //console.log(e)
     var i = Number('0');
     while (e[i]) {
       if (e[i] == wx.getStorageSync('openid')) {
@@ -265,7 +283,7 @@ Page({
     })
   },
   onLoad: function (options) {
-
+ 
     let that = this;
     let task_id = options.task_id
     this.setData({
@@ -294,14 +312,15 @@ Page({
           task_place: res.data.task_place,
           demand: res.data.demand,
           task_status: res.data.task_status,
-          partid: res.data.partid
+          partid: res.data.partid,
+          mark_status:res.data.mark_status
         })
+        
         this.check_status();
+        this.check_part(res.data.partid)
       }
     })
-    let fuck = wx.getStorageSync('task')
-    console.log(fuck)
-    this.check_part(fuck.partid);
+
     //partid: JSON.stringify(res.data.partid)
   },
 
