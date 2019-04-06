@@ -67,7 +67,7 @@
           <view bindtap="bindItemTap">
             <text class="task-txt" aid="{{task.task_id}}">{{item.demand}}</text>
           </view>
-          <view class="date" bindtap="bindItemTap">
+          <view class="date">
             <view class="">
               <a>{{item.dates}} </a>
             </view>

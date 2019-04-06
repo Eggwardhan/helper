@@ -1,35 +1,64 @@
 // pages/user/user.js
+var app = getApp();
+var wxCharts = require('../../utils/wxcharts.js');
+var radarChart = null;
+
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-
+    avatarUrl: "/resources/active.png",
+    realname: "eggwardhahah",
+    schoolNumber:20172111111,
+    schoolDepartment:"信息与通信工程学院",
+    intro: "I am a cool guy"
   },
-
-  /**
-   * Lifecycle function--Called when page load
-   */
+  touchHandler: function (e) {
+    console.log(redarChart.getCurrentDataIndex(e))
+  },
   onLoad: function (options) {
     console.log(options)
-    let userid=options.openid
-wx.request({
-  url: 'https://www.bupt404.cn/getinfo.php',
-  method:'GET',
-  data:userid,
-  success:(res)=>{
-    console.log(res)
-  }
-})
+    // let userid=options.openid
+    let userid = wx.getStorageSync("openid")
+    wx.request({
+      url: 'https://www.bupt404.cn/getinfo.php',
+      method: 'GET',
+      data: userid,
+      success: (res) => {
+        console.log(res)
+      }
+    })
   },
 
   /**
    * Lifecycle function--Called when page is initially rendered
    */
   onReady: function () {
-
+    let windowWidth = 380;
+  /*  try {
+      var res = wx.getSystemInfoSync();
+      windowWidth = res.windowWidth;
+    console.log(windowWidth)
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }*/
+    let that = this
+    radarChart = new wxCharts({
+      canvasId: 'radarCanvas',
+      type: 'radar',
+      categories: ['守时评分', '学习态度', '专注程度'],
+      series: [{
+        name: 'Ta的评分',
+        data: [4,5, 5]
+      }],
+      width: windowWidth,
+      height: 200,
+      extra: {
+        radar: {
+          max: 5
+        }
+      }
+    });
   },
+
 
   /**
    * Lifecycle function--Called when page show

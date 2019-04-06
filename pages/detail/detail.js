@@ -20,9 +20,16 @@ Page({
     task_status: '4',
     task: [{}],
     mark_status: null,
-    evaluated: false
+    evaluated: false,
+    p_punctual_mark:5,
+    p_focus_mark:5,
+    p_attitude_mark:5,
+    o_punctual_mark: 5,
+    o_focus_mark:5,
+    o_attitude_mark: 5
+    
   },
-
+  
   evaluate() {
     let partid = this.data.partid[0]
     console.log(partid)
@@ -48,9 +55,9 @@ Page({
             evaluated: true
           })
           wx.showToast({
-            title: '您已评价！',
-            icon: 'success',
-            duration: 2000
+            title: '您已评价！请耐心等待对方评价',
+            icon: 'none',
+            duration: 4000
           })
         },
         fail: (err) => {
@@ -58,7 +65,7 @@ Page({
           wx.showToast({
             title: '评价失败！',
             icon: 'warn',
-            duration: 2000
+            duration: 4000
           })
         }
       })
@@ -80,9 +87,9 @@ Page({
             evaluated: true
           })
           wx.showToast({
-            title: '您已评价！',
-            icon: 'success',
-            duration: 2000
+            title: '您已评价！请耐心等待对方评价',
+            icon: 'none',
+            duration: 4000
           })
         },
         fail: (err) => {
@@ -90,12 +97,11 @@ Page({
           wx.showToast({
             title: '评价失败！',
             icon: 'warn',
-            duration: 2000
+            duration: 3000
           })
         }
       })
     }
-
   },
   mark: (event) => { //评分
     //console.log(event.detail.value)
@@ -132,33 +138,43 @@ Page({
         title: '您已预约，请耐心等待！',
         icon: 'none',
         duration: 2000//持续的时间
-
       })
     } else if (task_status == '0' && this.data.openid != wx.getStorageSync('openid') && !this.data.hasPart) { //预约
-      wx.request({
-        url: 'https://www.bupt404.cn/handshake.php',
-        method: 'GET',
-        data: {
-          openid: wx.getStorageSync('openid'),
-          task_id: this.data.task_id,
-          task_status: '0'
-        },
+      wx.showModal({
+        title: 'warning',
+        content: '确认预约吗？预约后将不可更改',
         success: (res) => {
-          console.log(res)
-          this.setData({
-            situation: "已预约",
-            hasPart: true
-          })
-          wx.showToast({
-            title: '已发起预约',
-            icon: 'success',
-            duration: 1500,
-          })
-        },
-        fail: (res) => {
-          console.log(res)
+          if (res.confirm) {
+            wx.request({
+              url: 'https://www.bupt404.cn/handshake.php',
+              method: 'GET',
+              data: {
+                openid: wx.getStorageSync('openid'),
+                task_id: this.data.task_id,
+                task_status: '0'
+              },
+              success: (res) => {
+                console.log(res)
+                this.setData({
+                  situation: "已预约",
+                  hasPart: true
+                })
+                wx.showToast({
+                  title: '已发起预约',
+                  icon: 'success',
+                  duration: 1500,
+                })
+              },
+              fail: (res) => {
+                console.log(res)
+              }
+            })
+          } else {
+            return
+          }
         }
       })
+     
     } else if (task_status == '0' && this.data.openid == wx.getStorageSync('openid')) { //删除
       wx.showModal({
         title: 'warning',
@@ -201,7 +217,13 @@ Page({
     }
     this.check_status();
   },
-
+  goUser:function(e){
+    console.log(e)
+    console.log(e.currentTarget.id)
+  wx.navigateTo({
+      url: '/pages/user/user?openid='+e.currentTarget.id,
+    })
+  },
   check_status() {    //check task\mark status
     let that = this;
     let task_status = this.data.task_status;
@@ -275,26 +297,21 @@ Page({
   },
   comment() {
     wx.showToast({
-
       title: '评论留言功能尚在开发当中',
-
       icon: 'none',
-
       duration: 2000
-
     })
   },
   touchHandler: function (e) {
     console.log(redarChart.getCurrentDataIndex(e))
   },
   onLoad: function (options) {
-  
     let that = this;
     let task_id = options.task_id
     this.setData({
       task_id: task_id
     })
-    wx.request({
+    wx.request({                    
       url: 'https://www.bupt404.cn/datedetail.php',
       header: {
         "content-type": "application/x-www-form-urlencoded"
@@ -305,6 +322,7 @@ Page({
       },
       success: (res) => {
         wx.setStorageSync('task', res.data)
+        if(res.data.mark_status==40004){
         this.setData({
           task: res.data,
           realname: res.data.realname,
@@ -318,8 +336,33 @@ Page({
           demand: res.data.demand,
           task_status: res.data.task_status,
           partid: res.data.partid,
-          mark_status: res.data.mark_status
+          mark_status: res.data.mark_status,
+          p_punctual_mark: res.data.p_punctual_mark,
+          p_focus_mark: res.data.p_focus_mark,
+          p_attitude_mark: res.data.p_attitude_mark,
+          o_punctual_mark: res.data.o_punctual_mark,
+          o_focus_mark: res.data.o_focus_mark,
+          o_attitude_mark: res.data.o_attitude_mark
         })
+        }
+        else{
+          this.setData({
+            task: res.data,
+            realname: res.data.realname,
+            user_intro: res.data.user_intro,
+            openid: res.data.openid,
+            dates: res.data.dates,
+            startTime: res.data.startTime,
+            endTime: res.data.endTime,
+            avatarUrl: res.data.avatarUrl,
+            task_place: res.data.task_place,
+            demand: res.data.demand,
+            task_status: res.data.task_status,
+            partid: res.data.partid,
+            mark_status: res.data.mark_status,
+          })
+        }
+        
 
         this.check_status();
         this.check_part(res.data.partid)
@@ -332,17 +375,24 @@ Page({
 
   onReady: function () {
     let windowWidth = 400;
-
+    try {
+      var res = wx.getSystemInfoSync();
+      windowWidth = res.windowWidth;
+      console.log(windowWidth)
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
+    let that=this
     radarChart = new wxCharts({
       canvasId: 'radarCanvas',
       type: 'radar',
       categories: ['主人的守时评分', '学习态度', '学习态度', '参与人的守时程度', '专注评分', '专注评分'],
       series: [{
         name: '本次评分',
-        data: [5, 4, 3, 1, 5, 2]
+        data: [that.data.o_punctual_mark, that.data.o_attitude_mark, that.data.p_attitude_mark, that.data.p_punctual_mark, that.data.p_focus_mark, that.data.o_focus_mark]
       }],
       width: windowWidth,
-      height: 150,
+      height: 200,
       extra: {
         radar: {
           max: 5

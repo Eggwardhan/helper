@@ -38,14 +38,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": -1,
 			"list": [
-				{
-					"id": -1,
-					"name": "index2",
-					"pathName": "pages/index2/index2",
-					"query": ""
-				},
 				{
 					"id": -1,
 					"name": "add",
@@ -111,6 +105,13 @@
 					"id": -1,
 					"name": "notify",
 					"pathName": "pages/notify/notify",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "user",
+					"pathName": "pages/user/user",
 					"query": "",
 					"scene": null
 				}

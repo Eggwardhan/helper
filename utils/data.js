@@ -28,4 +28,5 @@ message_status
 40002 partid not mark 
 40003 all not mark 
 40004 all mark
+40005 out of date
 */

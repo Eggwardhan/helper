@@ -1,12 +1,12 @@
 <!--pages/detail/detail.wxml-->
 <view class="container">
-  <view class="information" bindtap="toInformation">
+  <view class="information">
     <text class="information-title"> {{dates }}/{{startTime}}-{{endTime}}\n{{task_place}}</text>
   </view>
   <view class="task-wrp">
     <view class="bg-half"></view>
-    <view class="task flex-wrp">
-      <view class="avatar flex-item">
+    <view class="task flex-wrp" bindtap="goUser" id="{{openid}}" >
+      <view class="avatar flex-item"  >
         <image src="{{avatarUrl?avatarUrl:'../../resources/active.png'}}"></image>
       </view>
       <view class="task-info flex-item">
@@ -24,14 +24,14 @@
   </view>
   <view wx:if="{{task_status=='4'&&!evaluated}}" class="evaluate-area">
     <text class="evaluate-title">{{evaluated?" ":"请对您的小伙伴进行评价"}}</text>
-    <multiple-rate class="mark"  rate="0" bindchange="mark" id="mark1">守时程度</multiple-rate>
-    <multiple-rate class="mark"  rate="0" bindchange="mark" id="mark2">专心程度</multiple-rate>
+    <multiple-rate class="mark" rate="0" bindchange="mark" id="mark1">守时程度</multiple-rate>
+    <multiple-rate class="mark" rate="0" bindchange="mark" id="mark2">专心程度</multiple-rate>
     <multiple-rate class="mark" disable="{{evaluated}}" rate="0" bindchange="mark" id="mark3">学习态度</multiple-rate>
     <view class="button-sp-area">
       <button wx:if="{{!evaluated}}" class="weui-btn" bindtap="evaluate" type="primary" plain="true" style="margin-top: 40rpx">评价</button>
     </view>
   </view>
-  <view wx:elif="{{task_status=='4'&&mark_status!=40005}}" >
+  <view wx:elif="{{task_status=='4'&&mark_status!=40005}}">
     <canvas canvas-id="radarCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
   </view>
 

@@ -1,1 +1,17 @@
 /* pages/user/user.wxss */
+.userinfo {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.userinfo-avatar {
+  display: block;
+  margin:40rpx auto;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+}
+.canvas{
+}

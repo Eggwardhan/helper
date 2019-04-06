@@ -1,6 +1,6 @@
 <view class="page" wx:if='{{!noMsg}}'>
   <block  wx:for="{{notifies}}" wx:for-item="item" >
-    <view class="block" >
+    <view class="block" wx:if="{{1}}">
       <view class="left">
         <image src="{{item.avatarUrl}}" id="{{item.openid}}" mode="aspectFill"  bindtap='getUser'/>
       </view>
