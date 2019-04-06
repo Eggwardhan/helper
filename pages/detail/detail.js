@@ -1,5 +1,7 @@
 // pages/detail/detail.js
 var app = getApp();
+var wxCharts = require('../../utils/wxcharts.js');
+var radarChart=null;
 //var getm1=this.selectComponent('#mark1');
 Page({
   data: {
@@ -14,17 +16,17 @@ Page({
     startTime: '10:50',
     endTime: '19:50',
     partid: [],
-    openid:"",
+    openid: "",
     task_status: '4',
     task: [{}],
-    mark_status:null,
+    mark_status: null,
     evaluated: false
   },
 
   evaluate() {
     let partid = this.data.partid[0]
     console.log(partid)
-    let mark1=wx.getStorageSync("mark1")
+    let mark1 = wx.getStorageSync("mark1")
     let mark2 = wx.getStorageSync("mark2")
     let mark3 = wx.getStorageSync("mark3")
     var that = this;
@@ -60,7 +62,7 @@ Page({
           })
         }
       })
-    } else if(wx.getStorageSync("openid") == partid)  {
+    } else if (wx.getStorageSync("openid") == partid) {
       wx.request({
         url: "https://www.bupt404.cn/mark.php",
         method: "POST",
@@ -214,22 +216,22 @@ Page({
       })
     }
     else if (task_status == "4") {
-      if ((that.data.mark_status == 40003 && that.data.hasPart == true)||(that.data.mark_status == 40001 && that.data.openid == wx.getStorageSync('openid')) || (that.data.mark_status == 40002 && that.data.openid != wx.getStorageSync('openid') && that.data.hasPart == true)) {
+      if ((that.data.mark_status == 40003 && that.data.hasPart == true) || (that.data.mark_status == 40001 && that.data.openid == wx.getStorageSync('openid')) || (that.data.mark_status == 40002 && that.data.openid != wx.getStorageSync('openid') && that.data.hasPart == true)) {
         this.setData({
           situation: "已完成",
-          evaluated:false
+          evaluated: false
         })
-      } else if (that.data.mark_status == 40004||that.data.mark_status==40005){
+      } else if (that.data.mark_status == 40004 || that.data.mark_status == 40005) {
         this.setData({
           situation: "已完成",
           evaluated: true
         })
-        }else{
+      } else {
         this.setData({
           situation: "已完成"
         })
-        }
-    
+      }
+
     } else if (task_status == '0' && that.data.openid == wx.getStorageSync('openid')) {
       this.setData({
         situation: "预约中"
@@ -265,7 +267,7 @@ Page({
         this.setData({
           hasPart: true
         })
-       // console.log(this.data.hasPart)
+        // console.log(this.data.hasPart)
         break;
       }
       i = i + 1;
@@ -282,8 +284,11 @@ Page({
 
     })
   },
+  touchHandler: function (e) {
+    console.log(redarChart.getCurrentDataIndex(e))
+  },
   onLoad: function (options) {
- 
+  
     let that = this;
     let task_id = options.task_id
     this.setData({
@@ -313,9 +318,9 @@ Page({
           demand: res.data.demand,
           task_status: res.data.task_status,
           partid: res.data.partid,
-          mark_status:res.data.mark_status
+          mark_status: res.data.mark_status
         })
-        
+
         this.check_status();
         this.check_part(res.data.partid)
       }
@@ -326,7 +331,24 @@ Page({
 
 
   onReady: function () {
+    let windowWidth = 400;
 
+    radarChart = new wxCharts({
+      canvasId: 'radarCanvas',
+      type: 'radar',
+      categories: ['主人的守时评分', '学习态度', '学习态度', '参与人的守时程度', '专注评分', '专注评分'],
+      series: [{
+        name: '本次评分',
+        data: [5, 4, 3, 1, 5, 2]
+      }],
+      width: windowWidth,
+      height: 150,
+      extra: {
+        radar: {
+          max: 5
+        }
+      }
+    });
   },
 
   onShow: function () {

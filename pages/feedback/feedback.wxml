@@ -3,11 +3,11 @@
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell">
       <view class="weui-cell__bd">
-        <textarea class="weui-textarea" id="user_intro" bindinput="bindinput" maxlength='200' placeholder="{{user_intro==null ?  '感谢您提出建议，我们会努力给您提供更好的体验':user_intro}}" style="height: 3.3em" auto-focus />
+        <textarea class="weui-textarea" id="user_intro" bindinput="bindinput" maxlength='200' placeholder="{{user_intro==null ?  '感谢您提出建议，我们会努力给您提供更好的体验':user_intro}}" style="height: 4.6em" auto-focus />
         <view class="weui-textarea-counter">{{wordNum|0}}/200</view>
       </view>
     
     </view>
   </view>
 </view>
-  <button class='saveInfo' bindtap="changeInfo">提交反馈</button>
+  <button class='saveInfo' bindtap="feedback">提交反馈</button>

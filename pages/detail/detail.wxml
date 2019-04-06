@@ -31,11 +31,8 @@
       <button wx:if="{{!evaluated}}" class="weui-btn" bindtap="evaluate" type="primary" plain="true" style="margin-top: 40rpx">评价</button>
     </view>
   </view>
-  <view wx:elif="{{task_status=='4'&&mark_status!=40005}}">
-  评分
-  守时程度
-  专心程度
-  学习态度
+  <view wx:elif="{{task_status=='4'&&mark_status!=40005}}" >
+    <canvas canvas-id="radarCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
   </view>
 
   <view class="task-footer flex-wrp">
