@@ -2,7 +2,6 @@
 var app = getApp();
 var wxCharts = require('../../utils/wxcharts.js');
 var radarChart=null;
-//var getm1=this.selectComponent('#mark1');
 Page({
   data: {
     hasPart: false,
@@ -20,7 +19,7 @@ Page({
     task_status: '4',
     task: [{}],
     mark_status: null,
-    evaluated: false,
+    evaluated: null,
     p_punctual_mark:5,
     p_focus_mark:5,
     p_attitude_mark:5,
@@ -97,7 +96,7 @@ Page({
           wx.showToast({
             title: '评价失败！',
             icon: 'warn',
-            duration: 3000
+            duration: 2000
           })
         }
       })
@@ -238,7 +237,7 @@ Page({
       })
     }
     else if (task_status == "4") {
-      if ((that.data.mark_status == 40003 && that.data.hasPart == true) || (that.data.mark_status == 40001 && that.data.openid == wx.getStorageSync('openid')) || (that.data.mark_status == 40002 && that.data.openid != wx.getStorageSync('openid') && that.data.hasPart == true)) {
+      if ((that.data.mark_status == 40003 && that.data.hasPart == true) || (that.data.mark_status == 40002 && that.data.openid == wx.getStorageSync('openid')) || (that.data.mark_status == 40001 && that.data.openid != wx.getStorageSync('openid') && that.data.hasPart == true)) {
         this.setData({
           situation: "已完成",
           evaluated: false
