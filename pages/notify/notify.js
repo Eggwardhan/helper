@@ -101,10 +101,6 @@ Page({
         data:{openid:wx.getStorageSync('openid')},
         success:(res)=>{
           var xx = res.data;
-          console.log( String.isBlank(xx[1]))
-          console.log()
-
-          
           if (String.isBlank(xx[0]) && String.isBlank(xx[1]) && String.isBlank(xx[2])) {
             this.setData({ noMsg: true })
           }

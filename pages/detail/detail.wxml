@@ -35,7 +35,7 @@
     <canvas canvas-id="radarCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
   </view>
 
-  <block wx:if="{{comments.length}}">
+  <block wx:if="{{!comments.length}}">
     <view class="triangle"></view>
     <view class="comment">
       <button class="commentItem" wx:for="{{comments}}" catchtap="tapComment" data-openId="{{item.from_user.openid}}" data-realname="{{item.from_user.realname}}">

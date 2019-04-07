@@ -79,9 +79,7 @@ Page({
         openid: wx.getStorageSync("openid")
       },
       success: (res) => {
-        console.log(res.data.status)
         if (res.data.status == 30001) {
-          console.log('true')
           app.globalData.isunread =true
           this.setData({
             'userListInfo[1].isunread': true
