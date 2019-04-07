@@ -1,4 +1,6 @@
 var app=getApp();
+import {String} from '../../utils/util.js'
+
 Page({
   data: {
     noMsg:false,
@@ -98,8 +100,12 @@ Page({
         method:"GET",
         data:{openid:wx.getStorageSync('openid')},
         success:(res)=>{
-          console.log(res)
-          if (res.data.status == '20001') {
+          var xx = res.data;
+          console.log( String.isBlank(xx[1]))
+          console.log()
+
+          
+          if (String.isBlank(xx[0]) && String.isBlank(xx[1]) && String.isBlank(xx[2])) {
             this.setData({ noMsg: true })
           }
           this.setData({

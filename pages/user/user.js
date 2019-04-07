@@ -19,7 +19,7 @@ Page({
   },
   onLoad: function (options) {
     let userid = options.openid
-    //console.log(userid)
+    console.log(userid)
     wx.request({
       url: 'https://www.bupt404.cn/getmarks.php',
       method: 'GET',

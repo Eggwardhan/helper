@@ -385,7 +385,7 @@ Page({
     try {
       var res = wx.getSystemInfoSync();
       windowWidth = res.windowWidth;
-      console.log(windowWidth)
+    //  console.log(windowWidth)
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
