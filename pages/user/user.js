@@ -6,7 +6,7 @@ var radarChart = null;
 Page({
   data: {
     avatarUrl: "/resources/active.png",
-    realname: "eggwardhahah",
+    realname: "韩四",
     schoolNumber:20172111111,
     schoolDepartment:"信息与通信工程学院",
     intro: "I am a cool guy"

@@ -2,7 +2,7 @@ var app=getApp();
 Page({
   data: {
     noMsg:false,
-    notifies: [{
+    notify1: [{
       openid:"OOxxsssooiii",
       task_id: '1',
       avatarUrl: '/resources/active.png',
@@ -16,7 +16,9 @@ Page({
       realname: '大兄弟',
       task_place: '食堂',
       dates: '2019-02-33'
-    }]
+    }],
+    notify2:[{}],
+    notify3:[{}]
   },
 
   getUser(e) {
@@ -73,7 +75,9 @@ Page({
             this.setData({ noMsg: true })
           }
           this.setData({
-            notifies:res.data
+            notify1:res.data[0],
+            notify2: res.data[1],
+            notify3: res.data[2]
           })
         }
       })

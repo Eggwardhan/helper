@@ -1,5 +1,5 @@
 <view class="page" wx:if='{{!noMsg}}'>
-  <block  wx:for="{{notifies}}" wx:for-item="item" >
+  <block  wx:for="{{notify1}}" wx:for-item="item" >
     <view class="block" wx:if="{{1}}">
       <view class="left">
         <image src="{{item.avatarUrl}}" id="{{item.openid}}" mode="aspectFill"  bindtap='getUser'/>
@@ -14,12 +14,51 @@
           </view>
         </view>
         <view class="accept" bindtap='accept' id="{{item.openid}}" data-task_id="{{item.task_id}}" >
-          <button class="weui-btn mini-btn" type="warn" size="mini" >'Accept'</button>
+          <button class="weui-btn mini-btn" type="warn" size="mini" >Accept</button>
         </view>
       </view>
     </view>
   </block>
-
+  <block  wx:for="{{notify2}}" wx:for-item="item" >
+    <view class="evaluate" wx:if="{{item}}">
+      <view class="left">
+        <image src="{{item.avatarUrl}}" id="{{item.openid}}" mode="aspectFill"  bindtap='getUser'/>
+      </view>
+      <view class="right">
+        <view class="content" id="{{item.task_id}}" bindtap="goDetail" >
+          <view>
+            <text class="notify-name">{{item.realname}}</text>
+          </view>
+          <view>
+            <text class="notify-info">{{item.task_place}} - {{item.dates}}</text>
+          </view>
+        </view>
+        <view class="accept" bindtap='goDetail' id="{{item.openid}}" data-task_id="{{item.task_id}}" >
+          <button class="weui-btn mini-btn" type="warn" size="mini" >evaluate</button>
+        </view>
+      </view>
+    </view>
+  </block>
+<block  wx:for="{{notify3}}" wx:for-item="item" >
+    <view class="success" wx:if="{{1}}">
+      <view class="left">
+        <image src="{{item.avatarUrl}}" id="{{item.openid}}" mode="aspectFill"  bindtap='getUser'/>
+      </view>
+      <view class="right">
+        <view class="content" id="{{item.task_id}}" bindtap="goDetail" >
+          <view>
+            <text class="notify-name">{{item.realname}}</text>
+          </view>
+          <view>
+            <text class="notify-info">{{item.task_place}} - {{item.dates}}</text>
+          </view>
+        </view>
+        <view class="accept"  id="{{item.openid}}" data-task_id="{{item.task_id}}" >
+          <button class="weui-btn mini-btn" disable="true" type="primary" size="mini" >success</button>
+        </view>
+      </view>
+    </view>
+  </block>
 </view>
   <view wx:else >
   <view >

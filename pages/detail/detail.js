@@ -238,6 +238,7 @@ Page({
     }
     else if (task_status == "4") {
       if ((that.data.mark_status == 40003 && that.data.hasPart == true) || (that.data.mark_status == 40002 && that.data.openid == wx.getStorageSync('openid')) || (that.data.mark_status == 40001 && that.data.openid != wx.getStorageSync('openid') && that.data.hasPart == true)) {
+        console.log("evaluated false")
         this.setData({
           situation: "已完成",
           evaluated: false
@@ -280,8 +281,13 @@ Page({
       return
     }
   },
-  check_part(e) {
+  check_part(a,e) {
     //console.log(e)
+    if(a==wx.getStorageSync('openid')){
+      this.setData({
+        hasPart:true
+      })
+    }
     var i = Number('0');
     while (e[i]) {
       if (e[i] == wx.getStorageSync('openid')) {
@@ -362,9 +368,9 @@ Page({
           })
         }
         
+        this.check_part(res.data.openid, res.data.partid);
 
         this.check_status();
-        this.check_part(res.data.partid)
       }
     })
 

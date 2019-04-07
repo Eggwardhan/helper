@@ -45,9 +45,26 @@
   align-items: center;
 }
 
-.accept image {
+.accept image  {
   width: 28px;
   height: 28px;
+}
+.evaluate {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 150rpx;
+  margin-bottom: 10rpx;
+  background-color: #C7EDE9;
+
+}
+.success{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 150rpx;
+  margin-bottom: 10rpx;
+  background-color: #AFD7ED;
 }
 
 .content view {
