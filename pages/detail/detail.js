@@ -25,7 +25,9 @@ Page({
     p_attitude_mark:5,
     o_punctual_mark: 5,
     o_focus_mark:5,
-    o_attitude_mark: 5
+    o_attitude_mark: 5,
+    comments:[{
+    }]
     
   },
   
@@ -237,7 +239,7 @@ Page({
       })
     }
     else if (task_status == "4") {
-      if ((that.data.mark_status == 40003 && that.data.hasPart == true) || (that.data.mark_status == 40002 && that.data.openid == wx.getStorageSync('openid')) || (that.data.mark_status == 40001 && that.data.openid != wx.getStorageSync('openid') && that.data.hasPart == true)) {
+      if ((that.data.mark_status == 40003 && that.data.hasPart == true) || (that.data.mark_status == 40001 && that.data.openid == wx.getStorageSync('openid')) || (that.data.mark_status == 40002 && that.data.openid != wx.getStorageSync('openid') && that.data.hasPart == true)) {
         console.log("evaluated false")
         this.setData({
           situation: "已完成",

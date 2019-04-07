@@ -179,5 +179,61 @@
 .evaluate-title{
   font-size:32rpx;
   align-content: center;
+}
 
+.comment {
+	padding: 10rpx;
+	font-size: 28rpx;
+	background-color: #ebebeb;
+	width: 92%;
+	margin: 0 auto 25rpx;
+}
+.realname {
+	color: #586c94;
+}
+.commentItem {
+	line-height: normal;
+	color: #343434;
+	margin: 5rpx 0;
+}
+
+.commentWrap {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 10px 10px;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	border-top: solid 1px rgba(0,0,0,0.1);
+	background-color: white;
+}
+.commentInput {
+	border-bottom: solid 1px #01b0f1;
+	flex: 6;
+	margin-right: 15rpx;
+	padding-left: 15rpx;
+	font-size: 30rpx;
+	color: #343434;
+}
+.input-placeholder {
+	font-size: 30rpx;
+}
+.commentSubmit {
+	flex: 1;
+	background-color: #01b0f1;
+	color: white;
+	border-radius: 8rpx;
+	text-align: center;
+	font-size: 28rpx;
+	padding: 10rpx 5rpx;
+	line-height: normal;
+}
+.triangle {
+	width: 0; 
+	height: 0; 
+	border-left: 10rpx solid transparent; 
+	border-right: 10rpx solid transparent; 
+	border-bottom: 20rpx solid #ebebeb;
+	margin-left: 40rpx;
 }

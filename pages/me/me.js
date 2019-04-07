@@ -15,12 +15,12 @@ Page({
       isunread: false,
       unreadNum: 1,
       url: "/pages/notify/notify"
-    },{
-        icon: '/resources/iconfont-address.png',
-        text: '我的自习',
-        isunread: false,
-        unreadNum: 0,
-        url: "/pages/myTasks/myTasks"
+    }, {
+      icon: '/resources/iconfont-address.png',
+      text: '我的自习',
+      isunread: false,
+      unreadNum: 0,
+      url: "/pages/myTasks/myTasks"
     },
     {
       icon: '/resources/iconfont-address.png',
@@ -42,10 +42,13 @@ Page({
   onLoad: function () {
 
     var that = this;
-    if(app.globalData.isunread){
+    if (app.globalData.isunread) {
       that.setData({
-       ' userListInfo[1].isunread': true
+        ' userListInfo[1].isunread': true
       })
+    } else {
+      
+
     }
     wx.getSetting({
       success: res => {
@@ -69,7 +72,33 @@ Page({
       }
     })
   },
-  register:function(){
+  onShow:function(){
+    wx.request({
+      url: 'https://www.bupt404.cn/redpoint.php',
+      header: {},
+      method: "GET",
+      data: {
+        openid: wx.getStorageSync("openid")
+      },
+      success: (res) => {
+        console.log(res.data.status)
+        if (res.data.status == 30001) {
+          console.log('true')
+          this.setData({
+            'userListInfo[1].isunread': true
+          })
+        }else{
+          this.setData({
+            'userListInfo[1].isunread': false
+          })
+        }
+      },
+      fail: (res) => {
+        console.log(res)
+      }
+    })
+  },
+  register: function () {
     wx.switchTab({
       url: '/pages/ index/index'
     })

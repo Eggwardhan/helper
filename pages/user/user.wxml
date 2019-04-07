@@ -8,7 +8,7 @@
   <view class="page__title">{{realname}}</view>
   <view class="page__desc">{{schoolNumber}}</view>
     <view class="page__desc">{{schoolDepartment}}\n</view>
-  <view class="page__desc">{{intro}}</view>
+  <view class="page__desc">{{user_intro}}</view>
 </view>
 
   <view class="chart">

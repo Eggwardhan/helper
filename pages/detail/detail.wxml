@@ -5,8 +5,8 @@
   </view>
   <view class="task-wrp">
     <view class="bg-half"></view>
-    <view class="task flex-wrp" bindtap="goUser" id="{{openid}}" >
-      <view class="avatar flex-item"  >
+    <view class="task flex-wrp" bindtap="goUser" id="{{openid}}">
+      <view class="avatar flex-item">
         <image src="{{avatarUrl?avatarUrl:'../../resources/active.png'}}"></image>
       </view>
       <view class="task-info flex-item">
@@ -33,6 +33,27 @@
   </view>
   <view wx:elif="{{task_status=='4'&&mark_status==40004}}">
     <canvas canvas-id="radarCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
+  </view>
+
+  <block wx:if="{{comments.length}}">
+    <view class="triangle"></view>
+    <view class="comment">
+      <button class="commentItem" wx:for="{{comments}}" catchtap="tapComment" data-openId="{{item.from_user.openid}}" data-realname="{{item.from_user.realname}}">
+        <view class="commentUser">
+          <text class="realname">{{item.from_user.realname}}</text>
+          <text wx:if="{{item.to_user && item.from_user.openid != item.to_user.openid}}">回复<text class="realname">{{item.to_user.realname}}</text></text> : {{item.content}}
+        </view>
+      </button>
+    </view>
+  </block>
+
+  <view class="commentWrap {{isIpx ? 'fixCommentWrap' : ''}}" wx:if="{{showComment || showDiss}}">
+    <input type="text" class="commentInput" placeholder="{{showComment ? nickname ? ('回复' + nickname) : '评论' : '举报'}}" focus="{{showComment || showDiss}}" value="{{comment}}" bindinput="comment" cursor-spacing="10" />
+
+    <form report-submit="true" bindsubmit="submitComment">
+      <button formType="submit" class="commentSubmit {{allowSubmit ? 'active' : 'negative'}}" disabled="{{allowSubmit ? false : true}}">发送
+      </button>
+    </form>
   </view>
 
   <view class="task-footer flex-wrp">

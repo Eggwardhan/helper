@@ -13,13 +13,13 @@
             <text class="notify-info">{{item.task_place}} - {{item.dates}}</text>
           </view>
         </view>
-        <view class="accept" bindtap='accept' id="{{item.openid}}" data-task_id="{{item.task_id}}" >
+        <view class="accept" bindtap='accept'id="{{item.openid}}" data-task_id="{{item.task_id}}" >
           <button class="weui-btn mini-btn" type="warn" size="mini" >Accept</button>
         </view>
       </view>
     </view>
   </block>
-  <block  wx:for="{{notify2}}" wx:for-item="item" >
+  <block  wx:for="{{notify3}}" wx:for-item="item" >
     <view class="evaluate" wx:if="{{item}}">
       <view class="left">
         <image src="{{item.avatarUrl}}" id="{{item.openid}}" mode="aspectFill"  bindtap='getUser'/>
@@ -33,13 +33,13 @@
             <text class="notify-info">{{item.task_place}} - {{item.dates}}</text>
           </view>
         </view>
-        <view class="accept" bindtap='goDetail' id="{{item.openid}}" data-task_id="{{item.task_id}}" >
-          <button class="weui-btn mini-btn" type="warn" size="mini" >evaluate</button>
+        <view class="evaluate-info" bindtap='goDetail' id="{{item.task_id}}" >
+          <text class="notify-info">已完成\n请评价</text>
         </view>
       </view>
     </view>
   </block>
-<block  wx:for="{{notify3}}" wx:for-item="item" >
+<block  wx:for="{{notify2}}" wx:for-item="item" >
     <view class="success" wx:if="{{1}}">
       <view class="left">
         <image src="{{item.avatarUrl}}" id="{{item.openid}}" mode="aspectFill"  bindtap='getUser'/>
@@ -53,8 +53,8 @@
             <text class="notify-info">{{item.task_place}} - {{item.dates}}</text>
           </view>
         </view>
-        <view class="accept"  id="{{item.openid}}" data-task_id="{{item.task_id}}" >
-          <button class="weui-btn mini-btn" disable="true" type="primary" size="mini" >success</button>
+        <view class="evaluate-info"  id="{{item.openid}}" data-task_id="{{item.task_id}}" >
+          <text class="notify-info">\t预约\n\t成功</text>
         </view>
       </view>
     </view>

@@ -36,7 +36,7 @@ Page({
     wx.request({
       url: "https://www.bupt404.cn/mydates.php",
       method: "GET",
-      header: { "Content-Type": "json" },
+      header: { "Content-Type": "application/json" },
       data: {
         openid: wx.getStorageSync("openid")
       },
