@@ -36,20 +36,20 @@
       {
         "text": "Date",
         "pagePath": "pages/index/index",
-        "iconPath": "resources/e12860cb450a4c012c47ac95c933fb3a.png",
-        "selectedIconPath": "resources/f78f9afcd0b4998bdfc816203bb4c6dd.png"
+        "iconPath": "resources/starIcon.png",
+        "selectedIconPath": "resources/starIcon2.png"
       },
       {
         "text": "Discover",
         "pagePath": "pages/discover/discover",
-        "iconPath": "resources/9ed52ecc6de7058a799290b08296230a.png",
-        "selectedIconPath": "resources/1c95a1701b58f4dc4d5f768d6f148714.png"
+        "iconPath": "resources/discoverIcon2.png",
+        "selectedIconPath": "resources/discoverIcon.png"
       },
       {
         "text": "Me",
         "pagePath": "pages/me/me",
-        "iconPath": "resources/9a68600a4eeb9fb2b9173d901e704971.png",
-        "selectedIconPath": "resources/1f2fab45b574b53079a632db488cf240.png"
+        "iconPath": "resources/user.png",
+        "selectedIconPath": "resources/user2.png"
       }
     ],
     "backgroundColor": "#F7F7FA"
