@@ -1,6 +1,24 @@
-/* pages/index/index.wxss */
-/* pages/info/info.wxss */
 @import '../../weui.wxss';
+
+.tag {
+  border-radius: 25px;
+  height:64rpx;
+  margin: 11rpx 10rpx;
+  padding:0 15rpx;
+  background-color: #f3f3f3;
+}
+
+
+.tagWrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+  align-content: space-around;
+
+}
+
 .saveInfo {
   width: 95%;
   position: absolute;
@@ -9,16 +27,19 @@
   border-radius: 5rpx;
   color: white;
 }
-.place-label{
+
+.place-label {
   width: 105ps;
   margin-left: 30rpx;
   margin-right: 20rpx;
   word-wrap: break-word;
   word-break: break-all;
 }
+
 .active {
   background-color: #01b0f1;
 }
+
 .negative {
   background-color: #ebebeb;
   color: #bfbfbf;
@@ -29,9 +50,11 @@ button {
   padding: 0;
   background-color: transparent;
 }
+
 button::after {
   border: none;
 }
+
 .button-hover {
   background-color: transparent;
 }

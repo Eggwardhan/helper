@@ -16,6 +16,8 @@ Page({
     date: null,
     startTime: null,
     endTime: null,
+    tag: ["信号月息通","大学英语"],
+    subject:"",
     demand: "  0 . 0 这个小伙伴要求不多哦，大家快来约TA吧～",
     registerInfo: null
   },
@@ -175,6 +177,10 @@ Page({
           endTime: e.detail.value
         });
         break;
+      case "subject":
+        this.setData({
+          subject:e.detail.value
+        })
 
     }
     this.getSaveBtn();
@@ -191,6 +197,40 @@ Page({
         allowSave: false
       })
     }
+  },
+  addTag(){
+    if (this.data.subject=="")
+    {
+      wx.showToast({
+        title: '请输入合法学科',
+        icon: "loading"
+      })
+      return
+    }
+    else if(this.data.tag.length>=5){
+      wx.showToast({
+        title: '科目超出合法数量',
+        icon: "loading"
+      })
+      return
+    }
+    let that=this
+  let idx=this.data.tag.length
+    this.data.tag[idx]=this.data.subject
+    this.setData({
+      tag:that.data.tag,
+      subject:""
+    })
+  },
+  removeTag(e)
+  {
+    var idx=e.currentTarget.dataset.num
+    var tag=this.data.tag
+    tag.splice(idx, 1)
+    console.log(tag)
+    this.setData({
+      tag:tag
+    })
   },
   saveInfo() {
     wx.request({

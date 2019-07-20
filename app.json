@@ -1,8 +1,5 @@
-
 {
-  "plugins":{
-    
-  },
+  "plugins": {},
   "pages": [
     "pages/index/index",
     "pages/discover/discover",
@@ -12,13 +9,6 @@
     "pages/myTasks/myTasks",
     "pages/notify/notify",
     "pages/user/user",
-    "pages/secmarket/index2/index2",
-    "pages/secmarket/add/add",
-    "pages/secmarket/detail/detail",
-    "pages/secmarket/me/me",
-    "pages/secmarket/order/order",
-    "pages/secmarket/me/address",
-    "pages/secmarket/me/editAddress",
     "pages/about/about",
     "pages/feedback/feedback"
   ],
@@ -53,5 +43,6 @@
       }
     ],
     "backgroundColor": "#F7F7FA"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

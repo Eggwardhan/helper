@@ -30,7 +30,23 @@
       <picker class="weui-btn" mode="time" value="{{endTime}}" id='endTime' start="{{startTime}}" end="23:00" bindchange="bindinput">
         <button type='default'>{{endTime}}</button>
       </picker>
+      <!--文本标签-->
+      <view class="weui-cells__title">科目</view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class="tagWrap">
+            <view class="tag" wx:for="{{tag}}" wx:key="{{index}}" wx:for-item="items"> {{items}}
+              <image style="height:30rpx;width:30rpx;padding-left:5rpx;" src="/resources/X.png" bindtap='removeTag' data-num="{{index}}" />
+            </view>
 
+          </view>
+          <view style="margin-top:20rpx" ><textarea class="weui-textarea" id="subject" bindinput="bindinput" maxlength='20' placeholder="请描述您小伙伴所需擅长学科" style="height: 1rem" value="{{subject}}" auto-focus /></view>
+        </view>
+      </view>
+      <view class="button-sp-area">
+        <button class="weui-btn mini-btn" type="primary" size="mini" style="margin-left:480rpx" bindtap='addTag'>添加标签</button>
+      </view>
+      <!--
       <view class="weui-cells__title">您希望对方是个什么样的人呢</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">
@@ -40,6 +56,7 @@
           </view>
         </view>
       </view>
+      -->
       <button class="weui-btn" type="primary" disabled="{{postDisable}}" bindtap='saveDate'>提交</button>
     </view>
   </view>
@@ -47,9 +64,9 @@
 
 <view wx:else>
   <view class='page__hd'>
-      <view class="page__title">注册个人信息</view>
-      <view class="page__desc">完善个人信息才能参与约会哦。</view>
-    </view>
+    <view class="page__title">注册个人信息</view>
+    <view class="page__desc">完善个人信息才能参与约会哦。</view>
+  </view>
   <view class="page">
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input {{nameWarn?'weui-cell_warn':''}}">
