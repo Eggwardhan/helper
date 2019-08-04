@@ -65,7 +65,11 @@
         </view>
         <view class="task-body">
           <view bindtap="bindItemTap">
-            <text class="task-txt" aid="{{task.task_id}}">{{item.demand}}</text>
+            <text class="task-text" aid="{{task.task_id}}">{{item.demand}}</text>
+          </view>
+                  <view class="tagWrap">
+            <view class="tag" wx:for="{{tag}}" wx:key="{{index}}" wx:for-item="items"> {{items}}
+            </view>
           </view>
           <view class="date">
             <view class="">

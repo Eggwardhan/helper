@@ -227,7 +227,7 @@ Page({
     var idx=e.currentTarget.dataset.num
     var tag=this.data.tag
     tag.splice(idx, 1)
-    console.log(tag)
+    //  console.log(tag)
     this.setData({
       tag:tag
     })

@@ -13,7 +13,7 @@
 .left {
   width: 20%;
   height: 100%;
-  padding: 5rpx;
+  padding: 0rpx;
   box-sizing: border-box;
 }
 
@@ -61,21 +61,23 @@
   align-items: center;
 }
 .evaluate {
+  margin-top:10rpx;
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 150rpx;
   margin-bottom: 0rpx;
-  background-color: rgb(197, 249, 253);
+border-left:12rpx rgb(197, 249, 253) solid; 
 
 }
+
 .success{
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 150rpx;
   margin-bottom: 0rpx;
-  background-color: rgb(253, 246, 181);
+  border-left:12rpx  rgb(253, 246, 181)  solid; 
 }
 
 .content view {
