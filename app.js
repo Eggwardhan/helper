@@ -28,7 +28,7 @@ App({
             })
             wx.getUserInfo({
               success: function(res) {
-                userInfo
+                console.log(res.userInfo)
                 wx.setStorageSync('userInfo', res.userInfo)
               }
             })

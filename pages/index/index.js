@@ -5,7 +5,7 @@ var db = require('../../utils/db.js')
 Page({
   data: {
     hasAuth: false,
-    hasRegister: false,   
+    hasRegister: false,
     postDisable: true,
     schoolDepartmentList: ['信息与通信工程学院', '计算机学院', '自动化学院', '软件学院', '数字媒体与设计艺术学院', '现代邮政学院', '继续教育学院', '国际学院', '网络教育学院', '电子工程学院', '理学院', '经济管理学院', '公共管理学院', '人文学院', '马克思主义学院', '网络空间安全学院', '光电信息学院', '民族教育学院', '网络技术研究院', '叶培大创新学院'],
     departmentIndex: 0,
@@ -16,9 +16,10 @@ Page({
     date: null,
     startTime: null,
     endTime: null,
-    tag: ["信号月息通","大学英语"],
-    subject:"",
-    demand: "  0 . 0 这个小伙伴要求不多哦，大家快来约TA吧～",
+    tag1: ["信号月息通", "大学英语"],
+    tag2:["beautiful","kind"],
+    subject: "",
+    demand: "",
     registerInfo: null
   },
   saveDate(e) {
@@ -179,7 +180,7 @@ Page({
         break;
       case "subject":
         this.setData({
-          subject:e.detail.value
+          subject: e.detail.value
         })
 
     }
@@ -198,39 +199,73 @@ Page({
       })
     }
   },
-  addTag(){
-    if (this.data.subject=="")
-    {
-      wx.showToast({
-        title: '请输入合法学科',
-        icon: "loading"
-      })
-      return
+  addTag(e) {
+    let that = this;
+    console.log(e.target.id)
+    switch (e.target.id) {
+      case 'addSubject':
+        if (that.data.subject == "") {
+          wx.showToast({
+            title: '请输入合法学科',
+            icon: "loading"
+          })
+          return
+        }
+        else if (that.data.tag1.length >= 5) {
+          wx.showToast({
+            title: '科目超出合法数量',
+            icon: "loading"
+          })
+          return
+        }
+        let idx1 = that.data.tag1.length
+        that.data.tag1[idx1] = that.data.subject
+        that.setData({
+          tag1: that.data.tag1,
+          subject: ""
+        })
+        break;
+      case "addDemand":
+        if (that.data.demand == "") {
+          wx.showToast({
+            title: '请输入合法学科',
+            icon: "loading"
+          })
+          return
+        }
+        let idx2 = that.data.tag2.length
+        that.data.tag2[idx2] = that.data.demand
+        that.setData({
+          tag2: that.data.tag2,
+          demand: ""
+        })
+        break;
     }
-    else if(this.data.tag.length>=5){
-      wx.showToast({
-        title: '科目超出合法数量',
-        icon: "loading"
-      })
-      return
-    }
-    let that=this
-  let idx=this.data.tag.length
-    this.data.tag[idx]=this.data.subject
-    this.setData({
-      tag:that.data.tag,
-      subject:""
-    })
   },
-  removeTag(e)
-  {
-    var idx=e.currentTarget.dataset.num
-    var tag=this.data.tag
-    tag.splice(idx, 1)
-    //  console.log(tag)
-    this.setData({
-      tag:tag
-    })
+  removeTag(e) {
+    var idx = e.currentTarget.dataset.num
+    var that=this
+    switch (e.target.id) {
+
+      case 'retag1':
+        var tag1 = that.data.tag1
+        tag1.splice(idx, 1)
+        that.setData({
+          tag1: tag1
+        })
+        break;
+      case 'retag2':
+        var tag2 = that.data.tag2
+        tag2.splice(idx, 1)
+        //  console.log(tag)
+        that.setData({
+          tag2: tag2
+        })
+      break;
+      default:
+      break;
+
+    }
   },
   saveInfo() {
     wx.request({
@@ -294,7 +329,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
     if (!wx.getStorageSync('userInfo') || !wx.getStorageSync('openid')) {
       // 登录
@@ -335,21 +370,21 @@ Page({
     }
 
     //temp  above
-    
+
     wx.request({
       url: 'https://www.bupt404.cn/redpoint.php',
-      header:{},
-      method:"GET",
-      data:{
-          openid:wx.getStorageSync("openid")
+      header: {},
+      method: "GET",
+      data: {
+        openid: wx.getStorageSync("openid")
       },
-      success:(res)=>{
+      success: (res) => {
         //console.log(res.data)
-        if(res){
-        app.globalData.isunread=true
+        if (res) {
+          app.globalData.isunread = true
         }
       },
-      fail:(res)=>{
+      fail: (res) => {
         console.log(res)
       }
     })
@@ -424,49 +459,49 @@ Page({
   /**
    * Lifecycle function--Called when page is initially rendered
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * Lifecycle function--Called when page show
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * Lifecycle function--Called when page hide
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * Lifecycle function--Called when page unload
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * Page event handler function--Called when user drop down
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
   },
 
   /**
    * Called when page reach bottom
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * Called when user click on the top right corner to share
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

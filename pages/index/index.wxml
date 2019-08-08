@@ -35,28 +35,37 @@
       <view class="weui-cell">
         <view class="weui-cell__bd">
           <view class="tagWrap">
-            <view class="tag" wx:for="{{tag}}" wx:key="{{index}}" wx:for-item="items"> {{items}}
-              <image style="height:30rpx;width:30rpx;padding-left:5rpx;" src="/resources/X.png" bindtap='removeTag' data-num="{{index}}" />
+            <view class="tag" wx:for="{{tag1}}" wx:key="{{index}}" wx:for-item="items"> {{items}}
+              <image style="height:30rpx;width:30rpx;padding-left:5rpx;" src="/resources/x.png" bindtap='removeTag' data-num="{{index}}" id="retag1" />
             </view>
 
           </view>
-          <view style="margin-top:20rpx" ><textarea class="weui-textarea" id="subject" bindinput="bindinput" maxlength='20' placeholder="请描述您小伙伴所需擅长学科" style="height: 1rem" value="{{subject}}" auto-focus /></view>
+          <view style="margin-top:20rpx" >
+          <textarea class="weui-textarea" id="subject" bindinput="bindinput" maxlength='20' placeholder="请描述您小伙伴所需擅长学科" style="height: 1.5rem" value="{{subject}}" auto-focus /></view>
         </view>
       </view>
-      <view class="button-sp-area">
-        <button class="weui-btn mini-btn" type="primary" size="mini" style="margin-left:480rpx" bindtap='addTag'>添加标签</button>
+      <view class="button-sp-area" style="text-align:right">
+        <button class="weui-btn mini-btn" type="primary" size="mini" id="addSubject"  bindtap='addTag'>添加标签</button>
       </view>
-      <!--
-      <view class="weui-cells__title">您希望对方是个什么样的人呢</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell">
-          <view class="weui-cell__bd">
-            <textarea class="weui-textarea" id="demand" bindinput="bindinput" maxlength='200' placeholder="请描述您理想的自习伙伴的学科特长，守时要求等 相关信息" style="height: 3.3em" auto-focus />
-            <view class="weui-textarea-counter">{{wordNum|0}}/200</view>
+
+      <view class="weui-cells__title">需求</view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class="tagWrap">
+            <view class="tag" wx:for="{{tag2}}" wx:key="{{index}}" wx:for-item="items"> {{items}}
+              <image style="height:30rpx;width:30rpx;padding-left:5rpx;" src="/resources/x.png" bindtap='removeTag' data-num="{{index}}" id='retag2' />
+            </view>
+
           </view>
+          <view style="margin-top:20rpx" >
+            <textarea class="weui-textarea" id="demand" bindinput="bindinput" maxlength='20' placeholder="请描述您小伙伴所需具备素质&nbsp;性格+xx+xx++" style="height: 3rem" value="{{demand}}" auto-focus /></view>
         </view>
       </view>
-      -->
+      <view class="button-sp-area" style="text-align:right">
+        <button class="weui-btn mini-btn" type="primary" size="mini"  bindtap='addTag' id="addDemand">添加标签</button>
+      </view>
+
+
       <button class="weui-btn" type="primary" disabled="{{postDisable}}" bindtap='saveDate'>提交</button>
     </view>
   </view>
