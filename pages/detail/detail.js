@@ -15,6 +15,12 @@ Page({
     startTime: '10:50',
     endTime: '19:50',
     partid: [],
+    alltags: [
+      { name: '耐心善良', value: '0', checked: true },
+      { name: '耐心善良', value: '1', checked: false },
+      { name: '耐心善良', value: '2', checked: false },
+      { name: '努力上进', value: '3', checked: false },
+    ],  
     openid: "",
     task_status: '4',
     task: [{}],
@@ -30,7 +36,20 @@ Page({
     }]
     
   },
-  
+  tagChoose: function (e) {
+    var alltags = this.data.alltags;
+    var checkArr = e.detail.value;
+    for (var i = 0; i < alltags.length; i++) {
+      if (checkArr.indexOf(i + "") != -1) {
+        alltags[i].checked = true;
+      } else {
+        alltags[i].checked = false;
+      }
+    }
+    this.setData({
+      alltags: alltags
+    })
+  } ,
   evaluate() {
     let partid = this.data.partid[0]
     console.log(partid)
