@@ -66,6 +66,9 @@
   border-bottom: 1px solid #eee;
   box-shadow: 0 2px 5px #eeeeee;
 }
+.task-item{
+  border-left:12rpx rgb(197, 249, 253) solid; 
+}
 .container .task-item .task-source{
   width: 690rpx;
   left: 0;

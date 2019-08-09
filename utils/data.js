@@ -29,4 +29,10 @@ message_status
 40003 all not mark 
 40004 all mark
 40005 out of date
+
+msg_type
+50001 Accept order
+50002 Remind mark
+50003 Be accepted
+50004 Comment msg
 */

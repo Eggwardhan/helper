@@ -1,7 +1,7 @@
 
 <view class='container' >
   <block wx:for="{{task}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
-    <view class="task-item" bindtap='goDetail' id="{{item.task_id}}" >
+    <view class="task-item" bindtap='goDetail' id="{{item.task_id}}" style="border-left:12rpx {{item.task_status==4?'#acf6ef':'#fe6673'}} solid" >
       <view class="task-source">
         <a class="">
           <view class="avatar">

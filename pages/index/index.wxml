@@ -58,7 +58,7 @@
 
           </view>
           <view style="margin-top:20rpx" >
-            <textarea class="weui-textarea" id="demand" bindinput="bindinput" maxlength='20' placeholder="请描述您小伙伴所需具备素质&nbsp;性格+xx+xx++" style="height: 3rem" value="{{demand}}" auto-focus /></view>
+            <textarea class="weui-textarea" id="demand" bindinput="bindinput" maxlength='20' placeholder="请描述您小伙伴所需具备素质" style="height: 3rem" value="{{demand}}" auto-focus /></view>
         </view>
       </view>
       <view class="button-sp-area" style="text-align:right">
