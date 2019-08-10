@@ -31,21 +31,28 @@
         <button type='default'>{{endTime}}</button>
       </picker>
       <!--文本标签-->
-      <view class="weui-cells__title">科目</view>
+      <view class="weui-cells__title">科目与自评</view>
       <view class="weui-cell">
         <view class="weui-cell__bd">
           <view class="tagWrap">
-            <view class="tag" wx:for="{{tag1}}" wx:key="{{index}}" wx:for-item="items"> {{items}}
-              <image style="height:30rpx;width:30rpx;padding-left:5rpx;" src="/resources/x.png" bindtap='removeTag' data-num="{{index}}" id="retag1" />
+            <view class="tag" wx:for="{{tag1}}" wx:key="{{index}}" wx:for-item="items" data-idx="{{index}}" bindtap="showMark" > {{items.subject}}
+              <image class="x" src="/resources/x.png" bindtap='removeTag' data-num="{{index}}" id="retag1" />
+              <view class="section section_gap" wx:if="{{items.show}}">
+                <view class="body-view">
+                  <slider bindchange="sliderChange" blockSize="18" width="100%" data-idx="{{index}}" min="0" max="11"show-value />
+                </view>
+              </view>
+
             </view>
 
           </view>
-          <view style="margin-top:20rpx" >
-          <textarea class="weui-textarea" id="subject" bindinput="bindinput" maxlength='20' placeholder="请描述您小伙伴所需擅长学科" style="height: 1.5rem" value="{{subject}}" auto-focus /></view>
+          <view style="margin-top:40rpx">
+            <textarea class="weui-textarea" id="subject" bindinput="bindinput" maxlength='20' placeholder="请描述您小伙伴所需擅长学科" style="height: 1.5rem" value="{{subject}}" auto-focus />
+          </view>
         </view>
       </view>
       <view class="button-sp-area" style="text-align:right">
-        <button class="weui-btn mini-btn" type="primary" size="mini" id="addSubject"  bindtap='addTag'>添加标签</button>
+        <button class="weui-btn mini-btn" type="primary" size="mini" id="addSubject" bindtap='addTag'>添加标签</button>
       </view>
 
       <view class="weui-cells__title">需求</view>
@@ -57,12 +64,13 @@
             </view>
 
           </view>
-          <view style="margin-top:20rpx" >
-            <textarea class="weui-textarea" id="demand" bindinput="bindinput" maxlength='20' placeholder="请描述您小伙伴所需具备素质" style="height: 3rem" value="{{demand}}" auto-focus /></view>
+          <view style="margin-top:20rpx">
+            <textarea class="weui-textarea" id="demand" bindinput="bindinput" maxlength='20' placeholder="请描述您小伙伴所需具备素质" style="height: 3rem" value="{{demand}}" auto-focus />
+          </view>
         </view>
       </view>
       <view class="button-sp-area" style="text-align:right">
-        <button class="weui-btn mini-btn" type="primary" size="mini"  bindtap='addTag' id="addDemand">添加标签</button>
+        <button class="weui-btn mini-btn" type="primary" size="mini" bindtap='addTag' id="addDemand">添加标签</button>
       </view>
 
 

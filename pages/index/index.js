@@ -16,7 +16,7 @@ Page({
     date: null,
     startTime: null,
     endTime: null,
-    tag1: ["信号月息通", "大学英语"],
+    tag1: [{ "subject": "信号与系统", "mark": "9","show":true }, { "subject": "大学英语","show":false}],
     tag2:["beautiful","kind"],
     subject: "",
     demand: "",
@@ -201,7 +201,7 @@ Page({
   },
   addTag(e) {
     let that = this;
-    console.log(e.target.id)
+    //console.log(e.target.id)
     switch (e.target.id) {
       case 'addSubject':
         if (that.data.subject == "") {
@@ -218,12 +218,20 @@ Page({
           })
           return
         }
+        let show=true
+        wx.request({
+
+        })
         let idx1 = that.data.tag1.length
-        that.data.tag1[idx1] = that.data.subject
+        let obj={}
+        obj.subject = that.data.subject
+        obj.show=show
+        that.data.tag1.push(obj);
         that.setData({
           tag1: that.data.tag1,
           subject: ""
         })
+        console.log(that.data.tag1)
         break;
       case "addDemand":
         if (that.data.demand == "") {
@@ -266,6 +274,24 @@ Page({
       break;
 
     }
+  },
+  showMark(e){
+
+    let idx = e.currentTarget.dataset.idx
+    let temp=!this.data.tag1[idx].show
+    let tag1 = 'tag1[' + idx + '].show'
+    this.setData({
+      [tag1]: temp
+    })
+  },
+
+  sliderChange(e){
+    console.log(e)
+    let idx=e.currentTarget.dataset.idx
+    let tag1='tag1[' + idx + '].mark'
+    this.setData({
+      [tag1]:e.detail.value
+    })
   },
   saveInfo() {
     wx.request({

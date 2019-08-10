@@ -1,11 +1,22 @@
 @import '../../weui.wxss';
+.body-view{
+width:140%;
 
+}
+.x{
+  height:30rpx;
+  width:30rpx;
+  padding-left:5rpx; 
+  margin-top:14.5rpx;
+}
 .tag {
   border-radius: 25px;
   height:64rpx;
   margin: 11rpx 10rpx;
+  margin-bottom: 50rpx;
   padding:0 15rpx;
   background-color: #f3f3f3;
+  text-align: center;
 }
 
 
