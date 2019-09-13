@@ -21,6 +21,8 @@ Page({
       { name: '耐心善良', value: '2', checked: false },
       { name: '努力上进', value: '3', checked: false },
     ],  
+    tag1: [{ "subject": "信号与系统和一些乱七八糟的东西", "mark": "9" }, { "subject": "大学英语","mark":"2"}],
+    tag2: ["beautiful", "kind"],
     openid: "",
     task_status: '4',
     task: [{}],
@@ -59,15 +61,15 @@ Page({
     var that = this;
     if (wx.getStorageSync("openid") == this.data.openid) {     //evaluate parter
       wx.request({
-        url: "https://www.bupt404.cn/mark.php",
+        url: "https://www.bupt404.cn/helper/markup.php",
         header: { "Content-Type": "application/x-www-form-urlencoded" },
         method: "POST",
         data: {
-          task_id: that.data.task_id,
+          taskid: that.data.task_id,
           partid: partid,
-          p_punctual_mark: mark1,
-          p_focus_mark: mark2,
-          p_attitude_mark: mark3
+          pPunctualMark: mark1,
+          pFocusMark: mark2,
+          pAttitudeMark: mark3
         },
         success: (e) => {
           console.log(e)
@@ -91,15 +93,15 @@ Page({
       })
     } else if (wx.getStorageSync("openid") == partid) {
       wx.request({
-        url: "https://www.bupt404.cn/mark.php",
+        url: "https://www.bupt404.cn/helper/markup.php",
         method: "POST",
         header: { "Content-Type": "application/x-www-form-urlencoded" },
         data: {
-          task_id: wx.getStorageSync("task").task_id,
+          taskid: wx.getStorageSync("task").task_id,
           openid: wx.getStorageSync("task").openid,
-          o_punctual_mark: mark1,
-          o_focus_mark: mark2,
-          o_attitude_mark: mark3
+          oPunctualMark: mark1,
+          oFocusMark: mark2,
+          oAttitudeMark: mark3
         },
         success: (e) => {
           console.log(e)
@@ -166,12 +168,12 @@ Page({
         success: (res) => {
           if (res.confirm) {
             wx.request({
-              url: 'https://www.bupt404.cn/handshake.php',
+              url: 'https://www.bupt404.cn/helper/apply.php',
               method: 'GET',
               data: {
                 openid: wx.getStorageSync('openid'),
-                task_id: this.data.task_id,
-                task_status: '0'
+                taskid: this.data.task_id,
+                taskStatus: '0'
               },
               success: (res) => {
                 console.log(res)
@@ -202,12 +204,12 @@ Page({
         success: (res) => {
           if (res.confirm) {
             wx.request({
-              url: 'https://www.bupt404.cn/handshake.php',
+              url: 'https://www.bupt404.cn/helper/apply.php',
               method: 'GET',
               data: {
                 openid: wx.getStorageSync('openid'),
-                task_id: this.data.task_id,
-                task_status: '2'
+                taskid: this.data.task_id,
+                taskStatus: '2'
               },
               success: (res) => {
                 console.log(res)
@@ -338,37 +340,38 @@ Page({
       task_id: task_id
     })
     wx.request({                    
-      url: 'https://www.bupt404.cn/datedetail.php',
+      url: 'https://www.bupt404.cn/helper/detail.php',
       header: {
         "content-type": "application/x-www-form-urlencoded"
       },
       method: 'GET',
       data: {
-        task_id: options.task_id
+        taskid: options.task_id
       },
       success: (res) => {
+        console.log(res.data)
         wx.setStorageSync('task', res.data)
-        if(res.data.mark_status==40004){
+        if(res.data.markStatus==40004){
         this.setData({
           task: res.data,
-          realname: res.data.realname,
+          realname: res.data.name,
           user_intro: res.data.user_intro,
           openid: res.data.openid,
-          dates: res.data.dates,
+          dates: res.data.dateTime,
           startTime: res.data.startTime,
           endTime: res.data.endTime,
           avatarUrl: res.data.avatarUrl,
-          task_place: res.data.task_place,
+          task_place: res.data.place,
           demand: res.data.demand,
-          task_status: res.data.task_status,
+          task_status: res.data.taskStatus,
           partid: res.data.partid,
-          mark_status: res.data.mark_status,
-          p_punctual_mark: res.data.p_punctual_mark,
-          p_focus_mark: res.data.p_focus_mark,
-          p_attitude_mark: res.data.p_attitude_mark,
-          o_punctual_mark: res.data.o_punctual_mark,
-          o_focus_mark: res.data.o_focus_mark,
-          o_attitude_mark: res.data.o_attitude_mark
+          mark_status: res.data.markStatus,
+          p_punctual_mark: res.data.pPunctualMark,
+          p_focus_mark: res.data.pFocusMark,
+          p_attitude_mark: res.data.pAttitudeMark,
+          o_punctual_mark: res.data.oPunctualMark,
+          o_focus_mark: res.data.oFocusMark,
+          o_attitude_mark: res.data.oAttitudeMark
         })
         }
         else{

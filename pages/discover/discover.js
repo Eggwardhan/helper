@@ -27,7 +27,7 @@ Page({
     console.log(typeof (this.data.dates))
     console.log(typeof (this.data.startTime))
     wx.request({
-      url: 'https://www.bupt404.cn/filter.php',
+      url: 'https://www.bupt404.cn/helper/filter.php',
       method: "POST",
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       data: {
@@ -96,7 +96,7 @@ Page({
   },
   queryall(e){
     wx.request({
-      url: "https://www.bupt404.cn/queryall.php",
+      url: "https://www.bupt404.cn/helper/queryall.php",
       method: "GET",
       header: { "Content-Type": "json" },
       data: {
@@ -112,7 +112,7 @@ Page({
   },
   onLoad: function (options) {
     wx.request({
-      url: "https://www.bupt404.cn/queryall.php",
+      url: "https://www.bupt404.cn/helper/queryall.php",
       method: "GET",
       header: { "Content-Type": "json" },
       data: {
@@ -145,7 +145,7 @@ Page({
 
   onPullDownRefresh: function () {
     wx.request({
-      url: "https://www.bupt404.cn/queryall.php",
+      url: "https://www.bupt404.cn/helper/queryall.php",
       method: "GET",
       header: { "Content-Type": "json" },
       data: {

@@ -8,7 +8,7 @@ App({
           var code = res.code;
           if (code) {
             wx.request({
-              url: "https://www.bupt404.cn/login.php",
+              url: "https://www.bupt404.cn/helper/login.php",
               data: {
                 code: code
               },

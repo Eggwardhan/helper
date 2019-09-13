@@ -24,7 +24,7 @@ Page({
   },
   saveDate(e) {
     wx.request({
-      url: 'https://www.bupt404.cn/order.php',
+      url: 'https://www.bupt404.cn/helper/order.php',
       method: "POST",
       header: {
         "content-type": "application/x-www-form-urlencoded"
@@ -295,7 +295,7 @@ Page({
   },
   saveInfo() {
     wx.request({
-      url: "https://www.bupt404.cn/postinfo.php",
+      url: "https://www.bupt404.cn/helper/postinfo.php",
       header: {
         "content-type": "application/x-www-form-urlencoded"
       },
@@ -364,7 +364,7 @@ Page({
           var code = res.code;
           if (code) {
             wx.request({
-              url: "https://www.bupt404.cn/login.php",
+              url: "https://www.bupt404.cn/helper/login.php",
               data: {
                 code: code
               },
@@ -398,7 +398,7 @@ Page({
     //temp  above
 
     wx.request({
-      url: 'https://www.bupt404.cn/redpoint.php',
+      url: 'https://www.bupt404.cn/helper/redpoint.php',
       header: {},
       method: "GET",
       data: {
@@ -433,7 +433,7 @@ Page({
 
     if (!this.data.hasRegister) {
       wx.request({
-        url: 'https://www.bupt404.cn/checkregister.php',
+        url: 'https://www.bupt404.cn/helper/checkregister.php',
         method: 'GET',
         data: {
           openid: wx.getStorageSync('openid')
